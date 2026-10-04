@@ -20,6 +20,8 @@ aside{
   position:sticky;top:0;height:100vh;
 }
 .brand{font-size:20px;font-weight:800;letter-spacing:-.4px;margin-bottom:7px}
+.sidebar-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.language-toggle{flex:none;padding:8px 11px;border:1px solid var(--line);border-radius:8px;background:white;color:var(--text);font-size:12px}
 .subtitle{font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:28px}
 .steps{display:flex;flex-direction:column;gap:8px}
 .step{
@@ -101,8 +103,11 @@ button{
 <body>
 <div class="shell">
 <aside>
-  <div class="brand">Print Nearby</div>
-  <div class="subtitle">Maker-side concept walkthrough<br>感谢你接受概念访谈！</div>
+  <div class="sidebar-head">
+    <div class="brand">Print Nearby</div>
+    <button class="language-toggle" id="languageToggle" type="button" aria-label="Switch language">EN</button>
+  </div>
+  <div class="subtitle"><span data-i18n="subtitle"></span></div>
   <div class="steps" id="steps"></div>
   <div class="progress"><div id="bar"></div></div>
 </aside>
@@ -110,122 +115,151 @@ button{
 <main>
 <section class="page active">
   <div class="eyebrow">01 · Concept</div>
-  <h1>让你的闲置的打印机，变成一个简单的本地服务</h1>
-  <p class="lead">你的顾客会上传模型。平台负责检查、报价、匹配和付款。你只需要接收适合自己设备和时间的订单。</p>
+  <h1 data-i18n="introTitle">让你的闲置的打印机，变成一个简单的本地服务</h1>
+  <p class="lead" data-i18n="introLead">你的顾客会上传模型。平台负责检查、报价、匹配和付款。你只需要接收适合自己设备和时间的订单。</p>
   <div class="flow">
-    <div class="flowbox"><b>顾客</b><br>上传 3D 模型</div><div class="arrow">→</div>
-    <div class="flowbox"><b>平台</b><br>检查 · 报价 · 匹配</div><div class="arrow">→</div>
-    <div class="flowbox"><b>你</b><br>接受 · 打印 · 完成</div>
+    <div class="flowbox"><b data-i18n="customer">顾客</b><br><span data-i18n="uploadModel">上传 3D 模型</span></div><div class="arrow">→</div>
+    <div class="flowbox"><b data-i18n="platform">平台</b><br><span data-i18n="checkQuoteMatch">检查 · 报价 · 匹配</span></div><div class="arrow">→</div>
+    <div class="flowbox"><b data-i18n="you">你</b><br><span data-i18n="acceptPrintComplete">接受 · 打印 · 完成</span></div>
   </div>
-  <div class="question"><p>看到这里，你觉得这个服务是怎么运作的？哪里还不清楚？</p></div>
-  <div class="nav"><span></span><button class="primary" onclick="go(1)">开始体验 →</button></div>
+  <div class="question"><p data-i18n="introQuestion">看到这里，你觉得这个服务是怎么运作的？哪里还不清楚？</p></div>
+  <div class="nav"><span></span><button class="primary" onclick="go(1)" data-i18n="start">开始体验 →</button></div>
 </section>
 
 <section class="page">
   <div class="eyebrow">02 · Printer profile</div>
-  <h1>告诉平台你的打印能力。</h1>
-  <p class="lead">这些信息用于自动过滤不适合你的订单。你仍然可以决定什么时候接单。</p>
+  <h1 data-i18n="printerTitle">告诉平台你的打印能力。</h1>
+  <p class="lead" data-i18n="printerLead">这些信息用于自动过滤不适合你的订单。你仍然可以决定什么时候接单。</p>
   <div class="card">
-    <label>Printer</label><select><option>Bambu Lab P1S</option><option>Anycubic Kobra 3 — 消费级 FDM</option><option>Creality Ender-3 V3 SE</option><option>Prusa MK4S</option><option>Other printer</option></select>
-    <label>available materials</label>
+    <label data-i18n="printerLabel">Printer</label><select><option>Bambu Lab P1S</option><option data-i18n="anycubicPrinter">Anycubic Kobra 3 — 消费级 FDM</option><option>Creality Ender-3 V3 SE</option><option>Prusa MK4S</option><option data-i18n="otherPrinter">Other printer</option></select>
+    <label data-i18n="materialsLabel">available materials</label>
     <div class="checks"><div class="chip on">PLA</div><div class="chip on">PETG</div><div class="chip">TPU</div><div class="chip">ABS</div></div>
-    <label>max printing size</label><input value="256 × 256 × 256 mm">
-    <label>max printing time per job</label><select><option>8 hours</option><option>4 hours</option><option>12 hours</option><option>No limit</option></select>
-    <label>available days</label>
+    <label data-i18n="sizeLabel">max printing size</label><input value="256 × 256 × 256 mm">
+    <label data-i18n="timeLabel">max printing time per job</label><select><option>8 hours</option><option>4 hours</option><option>12 hours</option><option data-i18n="noLimit">No limit</option></select>
+    <label data-i18n="daysLabel">available days</label>
     <div class="checks"><div class="chip">Mon</div><div class="chip on">Tue</div><div class="chip on">Wed</div><div class="chip">Thu</div><div class="chip on">Fri</div><div class="chip on">Sat</div><div class="chip on">Sun</div></div>
   </div>
-  <div class="question"><p>这些信息够不够让平台判断一个订单适不适合你的打印机？还需要知道什么？</p></div>
-  <div class="nav"><button class="secondary" onclick="go(0)">← 返回</button><button class="primary" onclick="go(2)">收到订单 →</button></div>
+  <div class="question"><p data-i18n="printerQuestion">这些信息够不够让平台判断一个订单适不适合你的打印机？还需要知道什么？</p></div>
+  <div class="nav"><button class="secondary" onclick="go(0)" data-i18n="back">← 返回</button><button class="primary" onclick="go(2)" data-i18n="orderReceived">收到订单 →</button></div>
 </section>
 
 <section class="page">
   <div class="eyebrow">03 · Smart matching</div>
-  <h1>平台只把匹配的订单发给你。</h1>
+  <h1 data-i18n="matchingTitle">平台只把匹配的订单发给你。</h1>
   <div class="card">
-    <div class="jobhead"><div><small>NEW PRINT REQUEST</small><h2 style="margin:5px 0">Phone stand</h2></div><div class="badge">Model checked</div></div>
+    <div class="jobhead"><div><small data-i18n="newRequest">NEW PRINT REQUEST</small><p style="margin:5px 0" data-i18n="objectPhoto">photo of the object to be printed</p></div><div class="badge" data-i18n="modelChecked">Model checked</div></div>
     <div class="object">▱</div>
     <div class="grid">
-      <div class="metric"><span>Material</span><strong>PLA</strong></div>
-      <div class="metric"><span>Print time</span><strong>3h 20m</strong></div>
-      <div class="metric"><span>Material use</span><strong>82 g</strong></div>
-      <div class="metric"><span>Quality</span><strong>Standard</strong></div>
-      <div class="metric"><span>Customer</span><strong>1.8 km away</strong></div>
-      <div class="metric"><span>You earn</span><strong>€14.20</strong></div>
+      <div class="metric"><span data-i18n="material">Material</span><strong>PLA</strong></div>
+      <div class="metric"><span data-i18n="printTime">Print time</span><strong>3h 20m</strong></div>
+      <div class="metric"><span data-i18n="materialUse">Material use</span><strong>82 g</strong></div>
+      <div class="metric"><span data-i18n="quality">Quality</span><strong data-i18n="standard">Standard</strong></div>
+      <div class="metric"><span data-i18n="customerLabel">Customer</span><strong data-i18n="distance">1.8 km away</strong></div>
+      <div class="metric"><span data-i18n="youEarn">You earn</span><strong>€14.20</strong></div>
     </div>
-    <div class="verify"><div>✓ Fits your printer</div><div>✓ No major geometry issues</div><div>✓ Customer has paid</div></div>
-    <div class="actions"><button class="secondary">Decline</button><button class="primary" onclick="go(3)">Accept</button></div>
+    <div class="verify"><div data-i18n="fitsPrinter">✓ Fits your printer</div><div data-i18n="geometryOk">✓ No major geometry issues</div><div data-i18n="customerPaid">✓ Customer has paid</div></div>
+    <div class="actions"><button class="secondary" data-i18n="decline">Decline</button><button class="primary" onclick="go(3)" data-i18n="accept">Accept</button></div>
   </div>
-  <div class="question"><p>如果你真的收到这个订单，这些信息够你决定接不接吗？缺什么？你希望平台定价，还是自己报价？</p></div>
-  <div class="nav"><button class="secondary" onclick="go(1)">← 返回</button><button class="primary" onclick="go(3)">假设接受 →</button></div>
+  <div class="question"><p data-i18n="matchingQuestion">如果你真的收到这个订单，这些信息够你决定接不接吗？缺什么？你希望平台定价，还是自己报价？</p></div>
+  <div class="nav"><button class="secondary" onclick="go(1)" data-i18n="back">← 返回</button><button class="primary" onclick="go(3)" data-i18n="assumeAccept">假设接受 →</button></div>
 </section>
 
 <section class="page">
   <div class="eyebrow">04 · Ready to print</div>
-  <h1>减少准备工作，但保留必要控制。</h1>
-  <p class="lead">平台根据模型和设备提供建议参数。这里故意保留两种方式，用来讨论你愿意把多少控制交给平台。</p>
+  <h1 data-i18n="readyTitle">减少准备工作，但保留必要控制。</h1>
+  <p class="lead" data-i18n="readyLead">平台根据模型和设备提供建议参数。这里故意保留两种方式，用来讨论你愿意把多少控制交给平台。</p>
   <div class="card">
-    <h2 style="margin-top:0">Recommended settings</h2>
+    <h2 style="margin-top:0" data-i18n="recommendedSettings">Recommended settings</h2>
     <div class="settings">
-      <div class="setting"><span>Layer height</span><b>0.20 mm</b></div>
-      <div class="setting"><span>Infill</span><b>20%</b></div>
-      <div class="setting"><span>Supports</span><b>No</b></div>
-      <div class="setting"><span>Estimated time</span><b>3h 20m</b></div>
+      <div class="setting"><span data-i18n="layerHeight">Layer height</span><b>0.20 mm</b></div>
+      <div class="setting"><span data-i18n="infill">Infill</span><b>20%</b></div>
+      <div class="setting"><span data-i18n="supports">Supports</span><b data-i18n="no">No</b></div>
+      <div class="setting"><span data-i18n="estimatedTime">Estimated time</span><b>3h 20m</b></div>
     </div>
-    <div class="actions"><button class="secondary">Download original STL</button><button class="primary">Use prepared file</button></div>
+    <div class="actions"><button class="secondary" data-i18n="downloadStl">Download original STL</button><button class="primary" data-i18n="usePrepared">Use prepared file</button></div>
   </div>
-  <div class="question"><p>你会信任平台准备好的打印参数/文件吗？哪些设置你一定想自己检查或修改？</p></div>
-  <div class="nav"><button class="secondary" onclick="go(2)">← 返回</button><button class="primary" onclick="go(4)">打印完成 →</button></div>
+  <div class="question"><p data-i18n="readyQuestion">你会信任平台准备好的打印参数/文件吗？哪些设置你一定想自己检查或修改？</p></div>
+  <div class="nav"><button class="secondary" onclick="go(2)" data-i18n="back">← 返回</button><button class="primary" onclick="go(4)" data-i18n="printComplete">打印完成 →</button></div>
 </section>
 
 <section class="page">
   <div class="eyebrow">05 · Quality check</div>
-  <h1>完成前做一次轻量确认。</h1>
+  <h1 data-i18n="qualityTitle">完成前做一次轻量确认。</h1>
   <div class="card">
-    <h2 style="margin-top:0">Print complete?</h2>
-    <div class="upload">＋<br><br>上传一张成品照片</div>
-    <label>打印结果</label>
-    <div class="checks"><div class="chip on">No issues</div><div class="chip">Minor defects</div><div class="chip">Print failed</div></div>
-    <button class="primary" style="width:100%;margin-top:22px">Submit & mark complete</button>
+    <h2 style="margin-top:0" data-i18n="printCompleteQuestion">Print complete?</h2>
+    <div class="upload"><span>＋</span><br><br><span data-i18n="uploadPhoto">上传一张成品照片</span></div>
+    <label data-i18n="printResult">打印结果</label>
+    <div class="checks"><div class="chip on" data-i18n="noIssues">No issues</div><div class="chip" data-i18n="minorDefects">Minor defects</div><div class="chip" data-i18n="printFailed">Print failed</div></div>
+    <button class="primary" style="width:100%;margin-top:22px" data-i18n="submitComplete">Submit & mark complete</button>
   </div>
-  <div class="question"><p>拍一张照片作为完成证明合理吗？你愿意做什么程度的质量检查？什么检查会太麻烦？</p></div>
-  <div class="nav"><button class="secondary" onclick="go(3)">← 返回</button><button class="primary" onclick="go(5)">如果失败了 →</button></div>
+  <div class="question"><p data-i18n="qualityQuestion">拍一张照片作为完成证明合理吗？你愿意做什么程度的质量检查？什么检查会太麻烦？</p></div>
+  <div class="nav"><button class="secondary" onclick="go(3)" data-i18n="back">← 返回</button><button class="primary" onclick="go(5)" data-i18n="ifFailed">如果失败了 →</button></div>
 </section>
 
 <section class="page">
   <div class="eyebrow">06 · Failure protection</div>
-  <h1>如果打印失败，谁承担风险？</h1>
+  <h1 data-i18n="failureTitle">如果打印失败，谁承担风险？</h1>
   <div class="card">
-    <h2 style="margin-top:0">Print failed</h2>
+    <h2 style="margin-top:0" data-i18n="printFailed">Print failed</h2>
     <div class="failure">
-      <div class="radio">○ Adhesion / support failure</div>
-      <div class="radio">○ Filament issue</div>
-      <div class="radio">○ Printer issue</div>
-      <div class="radio">○ Model issue</div>
-      <div class="radio">○ Other</div>
+      <div class="radio" data-i18n="adhesionFailure">○ Adhesion / support failure</div>
+      <div class="radio" data-i18n="filamentIssue">○ Filament issue</div>
+      <div class="radio" data-i18n="printerIssue">○ Printer issue</div>
+      <div class="radio" data-i18n="modelIssue">○ Model issue</div>
+      <div class="radio" data-i18n="other">○ Other</div>
     </div>
     <div class="grid">
-      <div class="metric"><span>Material used</span><strong>63 g</strong></div>
-      <div class="metric"><span>Time used</span><strong>2h 14m</strong></div>
+      <div class="metric"><span data-i18n="materialUsed">Material used</span><strong>63 g</strong></div>
+      <div class="metric"><span data-i18n="timeUsed">Time used</span><strong>2h 14m</strong></div>
     </div>
-    <div class="protection"><b>Platform protection</b><p>示例：补偿部分材料成本；如果你无法重印，订单可以自动重新匹配给其他Maker。</p><small>如果你有更好的解决方法建议，欢迎提供～</small></div>
-    <div class="actions"><button class="secondary">Return to network</button><button class="primary">Reprint</button></div>
+    <div class="protection"><b data-i18n="platformProtection">Platform protection</b><p data-i18n="protectionExample">示例：补偿部分材料成本；如果你无法重印，订单可以自动重新匹配给其他Maker。</p><small data-i18n="suggestSolution">如果你有更好的解决方法建议，欢迎提供～</small></div>
+    <div class="actions"><button class="secondary" data-i18n="returnNetwork">Return to network</button><button class="primary" data-i18n="reprint">Reprint</button></div>
   </div>
-  <div class="question"><p>这种情况怎么处理对你才公平？哪些失败应该由顾客或平台承担？什么情况会让你以后不想再接单？</p></div>
-  <div class="nav"><button class="secondary" onclick="go(4)">← 返回</button><button class="primary" onclick="go(0)">重新开始 ↻</button></div>
+  <div class="question"><p data-i18n="failureQuestion">这种情况怎么处理对你才公平？哪些失败应该由顾客或平台承担？什么情况会让你以后不想再接单？</p></div>
+  <div class="nav"><button class="secondary" onclick="go(4)" data-i18n="back">← 返回</button><button class="primary" onclick="go(0)" data-i18n="restart">重新开始 ↻</button></div>
 
 </section>
 </main>
 </div>
 
 <script>
-const names=["概念","打印机设置","智能匹配","打印准备","质量确认","失败处理"];
+const translations={
+  zh:{subtitle:"Maker-side concept walkthrough<br>感谢你接受概念访谈！",steps:["概念","打印机设置","智能匹配","打印准备","质量确认","失败处理"],introTitle:"让你的闲置的打印机，变成一个简单的本地服务",introLead:"你的顾客会上传模型。平台负责检查、报价、匹配和付款。你只需要接收适合自己设备和时间的订单。",customer:"顾客",uploadModel:"上传 3D 模型",platform:"平台",checkQuoteMatch:"检查 · 报价 · 匹配",you:"你",acceptPrintComplete:"接受 · 打印 · 完成",introQuestion:"看到这里，你觉得这个服务是怎么运作的？哪里还不清楚？",start:"开始体验 →",printerTitle:"告诉平台你的打印能力。",printerLead:"这些信息用于自动过滤不适合你的订单。你仍然可以决定什么时候接单。",printerLabel:"打印机",otherPrinter:"其他打印机",materialsLabel:"可打印材料",sizeLabel:"最大打印尺寸",timeLabel:"单个订单最长打印时间",daysLabel:"可接单日期",noLimit:"不限",printerQuestion:"这些信息够不够让平台判断一个订单适不适合你的打印机？还需要知道什么？",back:"← 返回",orderReceived:"收到订单 →",matchingTitle:"平台只把匹配的订单发给你。",newRequest:"新的打印请求",objectPhoto:"待打印物品的照片",modelChecked:"模型已检查",material:"材料",printTime:"打印时间",materialUse:"材料用量",quality:"质量",standard:"标准",customerLabel:"顾客",distance:"距离 1.8 公里",youEarn:"你的收入",fitsPrinter:"✓ 符合你的打印机条件",geometryOk:"✓ 模型没有明显几何问题",customerPaid:"✓ 顾客已付款",decline:"拒绝",accept:"接受",matchingQuestion:"如果你真的收到这个订单，这些信息够你决定接不接吗？缺什么？你希望平台定价，还是自己报价？",assumeAccept:"假设接受 →",readyTitle:"减少准备工作，但保留必要控制。",readyLead:"平台根据模型和设备提供建议参数。这里故意保留两种方式，用来讨论你愿意把多少控制交给平台。",recommendedSettings:"推荐设置",layerHeight:"层高",infill:"填充率",supports:"支撑",no:"无",estimatedTime:"预计时间",downloadStl:"下载原始 STL",usePrepared:"使用处理好的文件",readyQuestion:"你会信任平台准备好的打印参数/文件吗？哪些设置你一定想自己检查或修改？",printComplete:"打印完成 →",qualityTitle:"完成前做一次简单确认。",printCompleteQuestion:"打印完成了吗？",uploadPhoto:"上传一张成品照片",printResult:"打印结果",noIssues:"没有问题",minorDefects:"轻微瑕疵",printFailed:"打印失败",submitComplete:"提交并标记为完成",qualityQuestion:"拍一张照片作为完成证明合理吗？你愿意做什么程度的质量检查？什么检查会太麻烦？",ifFailed:"如果失败了 →",failureTitle:"如果打印失败，谁承担风险？",adhesionFailure:"○ 粘附或支撑失败",filamentIssue:"○ 耗材问题",printerIssue:"○ 打印机问题",modelIssue:"○ 模型问题",other:"○ 其他",materialUsed:"已用材料",timeUsed:"已用时间",platformProtection:"平台保障",protectionExample:"示例：补偿部分材料成本；如果你无法重印，订单可以自动重新匹配给其他 Maker。",suggestSolution:"如果你有更好的解决方法建议，欢迎提供～",returnNetwork:"退回订单网络",reprint:"重新打印",failureQuestion:"这种情况怎么处理对你才公平？哪些失败应该由顾客或平台承担？什么情况会让你以后不想再接单？",restart:"重新开始 ↻",toggle:"EN",languageLabel:"Switch language"},
+  en:{subtitle:"Maker-side concept walkthrough<br>Thanks for joining this concept interview!",steps:["Concept","Printer profile","Smart matching","Ready to print","Quality check","Failure protection"],introTitle:"Turn your idle 3D printer into a simple local service",introLead:"Customers upload a model. The platform checks it, provides a quote, finds a match, and handles payment. You only receive jobs that fit your printer and schedule.",customer:"Customer",uploadModel:"Upload a 3D model",platform:"Platform",checkQuoteMatch:"Check · Quote · Match",you:"You",acceptPrintComplete:"Accept · Print · Complete",introQuestion:"Now that you have seen the concept, how do you think the service works? What is still unclear?",start:"Get started →",printerTitle:"Tell the platform what your printer can do.",printerLead:"This information filters out jobs that do not fit your setup. You still choose when to accept work.",printerLabel:"Printer",otherPrinter:"Other printer",materialsLabel:"Available materials",sizeLabel:"Maximum print size",timeLabel:"Maximum print time per job",daysLabel:"Available days",noLimit:"No limit",printerQuestion:"Is this enough information for the platform to tell whether a job suits your printer? What else should it know?",back:"← Back",orderReceived:"Receive a job →",matchingTitle:"The platform only sends you jobs that fit.",newRequest:"NEW PRINT REQUEST",objectPhoto:"Photo of the object to be printed",modelChecked:"Model checked",material:"Material",printTime:"Print time",materialUse:"Material use",quality:"Quality",standard:"Standard",customerLabel:"Customer",distance:"1.8 km away",youEarn:"You earn",fitsPrinter:"✓ Fits your printer",geometryOk:"✓ No major geometry issues",customerPaid:"✓ Customer has paid",decline:"Decline",accept:"Accept",matchingQuestion:"If you received this request, would you have enough information to decide? What is missing? Should the platform set the price, or should you quote it?",assumeAccept:"Assume you accept →",readyTitle:"Less setup work, while keeping control where it matters.",readyLead:"The platform suggests settings based on the model and your printer. These two options are here to explore how much control you would hand over.",recommendedSettings:"Recommended settings",layerHeight:"Layer height",infill:"Infill",supports:"Supports",no:"No",estimatedTime:"Estimated time",downloadStl:"Download original STL",usePrepared:"Use prepared file",readyQuestion:"Would you trust print settings or a prepared file from the platform? Which settings would you need to check or change yourself?",printComplete:"Print complete →",qualityTitle:"Do a quick check before finishing.",printCompleteQuestion:"Print complete?",uploadPhoto:"Upload a photo of the finished print",printResult:"Print result",noIssues:"No issues",minorDefects:"Minor defects",printFailed:"Print failed",submitComplete:"Submit & mark complete",qualityQuestion:"Is a photo reasonable proof of completion? How much quality checking would you be willing to do? What would feel like too much hassle?",ifFailed:"What if it fails? →",failureTitle:"If a print fails, who takes the risk?",adhesionFailure:"○ Adhesion or support failure",filamentIssue:"○ Filament issue",printerIssue:"○ Printer issue",modelIssue:"○ Model issue",other:"○ Other",materialUsed:"Material used",timeUsed:"Time used",platformProtection:"Platform protection",protectionExample:"For example: cover part of the material cost. If you cannot reprint, the job can be matched with another maker.",suggestSolution:"Have a better idea for handling this? We would love to hear it.",returnNetwork:"Return to job pool",reprint:"Reprint",failureQuestion:"What would feel fair in this situation? Which failures should be the customer's or platform's responsibility? What might make you stop accepting jobs?",restart:"Start over ↻",toggle:"中文",languageLabel:"切换语言"}
+};
+translations.zh.anycubicPrinter="Anycubic Kobra 3 — 消费级 FDM";
+translations.en.anycubicPrinter="Anycubic Kobra 3 — consumer FDM printer";
+let currentLanguage="zh";
+const names=translations.zh.steps;
 const pages=[...document.querySelectorAll(".page")];
 const steps=document.getElementById("steps");
-names.forEach((n,i)=>{
+function renderSteps(){
+  steps.replaceChildren();
+  translations[currentLanguage].steps.forEach((n,i)=>{
   const el=document.createElement("div");el.className="step"+(i===0?" active":"");
   el.innerHTML=`<span class="num">${i+1}</span><span>${n}</span>`;
   el.onclick=()=>go(i);steps.appendChild(el);
-});
+  });
+}
+function setLanguage(language){
+  currentLanguage=language;
+  const content=translations[language];
+  document.documentElement.lang=language==="zh"?"zh-CN":"en";
+  document.querySelectorAll("[data-i18n]").forEach(element=>{
+    const value=content[element.dataset.i18n];
+    if(value!==undefined){
+      if(element.dataset.i18n==="subtitle")element.innerHTML=value;
+      else element.textContent=value;
+    }
+  });
+  const toggle=document.getElementById("languageToggle");
+  toggle.textContent=content.toggle;
+  toggle.setAttribute("aria-label",content.languageLabel);
+  renderSteps();
+  const activeIndex=pages.findIndex(page=>page.classList.contains("active"));
+  [...steps.children].forEach((step,index)=>step.classList.toggle("active",index===activeIndex));
+}
+document.getElementById("languageToggle").addEventListener("click",()=>setLanguage(currentLanguage==="zh"?"en":"zh"));
 function go(i){
   pages.forEach((p,j)=>p.classList.toggle("active",j===i));
   [...steps.children].forEach((s,j)=>s.classList.toggle("active",j===i));
@@ -233,6 +267,7 @@ function go(i){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>c.classList.toggle("on"));
+setLanguage("zh");
 </script>
 </body>
 </html>
