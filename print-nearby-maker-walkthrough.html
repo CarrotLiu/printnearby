@@ -134,6 +134,10 @@ button{
 .capability-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .material-status{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
 .material-status button{padding:8px 10px;font-size:12px}
+.material-prices{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.material-price-field{display:grid;gap:6px}
+.material-price-field label{margin:0;font-size:12px}
+.material-price-note{margin:10px 0 0;color:var(--muted);font-size:12px;line-height:1.5}
 .eligibility-list,.restriction-list{display:grid;grid-template-columns:1fr 1fr;list-style:none;padding:0}
 .reliability-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
 .reliability-metric{padding:11px;background:white;border:1px solid var(--line);border-radius:8px}
@@ -159,6 +163,7 @@ button{
   .evidence-photo{min-height:85px}
   .check-list,.eligibility-list,.restriction-list{grid-template-columns:1fr}
   .reliability-grid{grid-template-columns:1fr 1fr}
+  .material-prices{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -196,6 +201,14 @@ button{
     <label data-i18n="printerLabel">Printer</label><select id="printerSelect"><option value="bambu-p1s">Bambu Lab P1S</option><option value="anycubic-kobra-3" data-i18n="anycubicPrinter">Anycubic Kobra 3 — 消费级 FDM</option><option value="ender-3-v3-se">Creality Ender-3 V3 SE</option><option value="prusa-mk4s">Prusa MK4S</option><option value="other" data-i18n="otherPrinter">Other printer</option></select>
     <label data-i18n="materialsLabel">available materials</label>
     <div class="checks"><div class="chip on">PLA</div><div class="chip on">PETG</div><div class="chip">TPU</div><div class="chip">ABS</div></div>
+    <h3 data-i18n="materialPricesTitle">材料价格</h3>
+    <div class="material-prices">
+      <div class="material-price-field"><label for="materialPricePLA">PLA · €/kg</label><input id="materialPricePLA" type="number" min="0" step="0.01" inputmode="decimal" data-material-price="PLA"></div>
+      <div class="material-price-field"><label for="materialPricePETG">PETG · €/kg</label><input id="materialPricePETG" type="number" min="0" step="0.01" inputmode="decimal" data-material-price="PETG"></div>
+      <div class="material-price-field"><label for="materialPriceTPU">TPU · €/kg</label><input id="materialPriceTPU" type="number" min="0" step="0.01" inputmode="decimal" data-material-price="TPU"></div>
+      <div class="material-price-field"><label for="materialPriceABS">ABS · €/kg</label><input id="materialPriceABS" type="number" min="0" step="0.01" inputmode="decimal" data-material-price="ABS"></div>
+    </div>
+    <p class="material-price-note" data-i18n="materialPriceHelp">输入每公斤耗材价格，平台会按订单用量估算材料成本和利润。</p>
     <label data-i18n="colorsLabel">可打印颜色</label>
     <div class="color-options" id="colorOptions">
       <button class="chip color-chip" type="button" data-color="white" aria-pressed="false"><span class="color-swatch" style="background:#fff"></span><span data-i18n="colorWhite">白色</span></button>
@@ -331,14 +344,17 @@ button{
   <div class="card">
     <div class="jobhead"><div><small data-i18n="newRequest">NEW PRINT REQUEST</small><p style="margin:5px 0" data-i18n="objectPhoto">photo of the object to be printed</p></div><div class="badge" data-i18n="modelChecked">Model checked</div></div>
     <div class="object">▱</div>
-    <div class="grid">
+    <div class="grid" id="orderEconomics" data-material="PLA" data-material-grams="82" data-revenue="14.20">
       <div class="metric"><span data-i18n="material">Material</span><strong>PLA</strong></div>
       <div class="metric"><span data-i18n="printTime">Print time</span><strong>3h 20m</strong></div>
       <div class="metric"><span data-i18n="materialUse">Material use</span><strong>82 g</strong></div>
       <div class="metric"><span data-i18n="quality">Quality</span><strong data-i18n="standard">Standard</strong></div>
       <div class="metric"><span data-i18n="customerLabel">Customer</span><strong data-i18n="distance">1.8 km away</strong></div>
-      <div class="metric"><span data-i18n="youEarn">You earn</span><strong>€14.20</strong></div>
+      <div class="metric"><span data-i18n="orderRevenue">订单收入</span><strong id="orderRevenue">€14.20</strong></div>
+      <div class="metric"><span data-i18n="materialCost">材料成本</span><strong id="orderMaterialCost">—</strong></div>
+      <div class="metric"><span data-i18n="estimatedProfit">预计利润</span><strong id="orderEstimatedProfit">—</strong></div>
     </div>
+    <p class="material-price-note" data-i18n="profitCalculationNote">利润按订单收入减材料成本估算，未包含电费及平台费用。</p>
     <div class="protection"><b data-i18n="whyMatched">为什么匹配给你</b><div class="verify"><div data-i18n="matchingPrinter">✓ Bambu Lab P1S 支持此模型</div><div data-i18n="matchingPla">✓ PLA 资格已验证</div><div data-i18n="matchingTime">✓ 符合你的可用打印时长</div><div data-i18n="matchingDistance">✓ 顾客距离 1.8 公里</div><div data-i18n="customerPaid">✓ 顾客已付款</div></div><span class="status-pill" id="matchingMakerStatus" data-i18n="newVerifiedMaker">新晋已验证 Maker</span></div>
     <div class="verify"><div data-i18n="geometryOk">✓ 模型没有明显几何问题</div></div>
     <div class="actions"><button class="secondary" data-i18n="decline">Decline</button><button class="primary" onclick="go(4)" data-i18n="accept">Accept</button></div>
@@ -437,6 +453,8 @@ const qualificationTranslations={
 };
 Object.assign(translations.zh,qualificationTranslations.zh);
 Object.assign(translations.en,qualificationTranslations.en);
+Object.assign(translations.zh,{materialPricesTitle:"各类材料价格",materialPriceHelp:"输入每公斤耗材价格，平台会按订单用量估算材料成本和利润。",orderRevenue:"订单收入",materialCost:"材料成本",estimatedProfit:"预计利润",profitCalculationNote:"利润按订单收入减材料成本估算，未包含电费及平台费用。"});
+Object.assign(translations.en,{materialPricesTitle:"Material prices",materialPriceHelp:"Enter each material's price per kilogram. The platform estimates material cost and profit from each order's usage.",orderRevenue:"Order revenue",materialCost:"Material cost",estimatedProfit:"Estimated profit",profitCalculationNote:"Profit is order revenue minus material cost; electricity and platform fees are not included."});
 translations.zh.modelDownloaded="✓ 资格测试模型已下载";
 translations.en.modelDownloaded="✓ Qualification model downloaded";
 translations.zh.measurementAria="以毫米为单位的测量值";
@@ -518,6 +536,7 @@ function setLanguage(language){
   renderSteps();
   renderQualificationSteps();
   renderProfileStatus();
+  updateOrderProfit();
 }
 function go(index){
   if(index>=3&&!makerQualified){
@@ -569,6 +588,33 @@ function renderProfileStatus(){
   translateElement(nextButton);
   document.querySelectorAll("[data-i18n='verifiedCapabilityLabel'],[data-i18n='matchingPrinter']").forEach(translateElement);
 }
+function updateOrderProfit(){
+  const order=document.getElementById("orderEconomics");
+  const material=order.dataset.material;
+  const priceInput=document.querySelector(`[data-material-price="${material}"]`);
+  const pricePerKg=Number(priceInput.value);
+  const grams=Number(order.dataset.materialGrams);
+  const revenue=Number(order.dataset.revenue);
+  const costElement=document.getElementById("orderMaterialCost");
+  const profitElement=document.getElementById("orderEstimatedProfit");
+  if(priceInput.value.trim()===""||!Number.isFinite(pricePerKg)||pricePerKg<0){
+    costElement.textContent="—";
+    profitElement.textContent="—";
+    return;
+  }
+  const formatter=new Intl.NumberFormat(currentLanguage==="zh"?"zh-CN":"en-IE",{style:"currency",currency:"EUR"});
+  const materialCost=pricePerKg*grams/1000;
+  costElement.textContent=formatter.format(materialCost);
+  profitElement.textContent=formatter.format(revenue-materialCost);
+}
+document.querySelectorAll("[data-material-price]").forEach(input=>{
+  const key=`material-price-${input.dataset.materialPrice}`;
+  input.value=session.get(key,"");
+  input.addEventListener("input",()=>{
+    session.set(key,input.value);
+    updateOrderProfit();
+  });
+});
 function setQualificationStage(stage){
   qualificationStage=stage;
   session.set("qualification-stage",stage);
@@ -755,6 +801,7 @@ if(session.get("qualification-model-downloaded","false")==="true"){
   document.getElementById("finishQualificationPrint").disabled=false;
 }
 setLanguage("zh");
+updateOrderProfit();
 renderProfileStatus();
 setQualificationStage(qualificationStage);
 updateMeasurement();
