@@ -88,6 +88,54 @@ button{
 .nav{display:flex;justify-content:space-between;margin-top:34px}
 .nav button{min-width:110px}
 .note{font-size:12px;color:var(--muted);margin-top:16px;line-height:1.5}
+.status-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 0;border-top:1px solid var(--line)}
+.status-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border-radius:999px;background:var(--soft);font-size:12px;font-weight:700}
+.status-pill.verified{background:#eaf5ee;color:var(--good)}
+.qualification-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:20px 0 26px}
+.qualification-step{min-width:0;padding:10px 8px;border:1px solid var(--line);border-radius:9px;background:white;color:var(--muted);font-size:12px}
+.qualification-step.active{border-color:var(--dark);background:var(--dark);color:white}
+.qualification-step.complete{border-color:#b8d8c4;color:var(--good)}
+.qualification-panel{display:none}
+.qualification-panel.active{display:block}
+.printer-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:18px 0}
+.printer-summary>div{background:white;padding:14px}
+.printer-summary span,.data-label{display:block;color:var(--muted);font-size:11px;margin-bottom:6px}
+.data-label[hidden]{display:none}
+.verification-code{display:inline-block;padding:8px 11px;background:#f0f5f1;border-radius:7px;font-weight:800;letter-spacing:1px}
+.instruction-list{padding-left:20px;font-size:14px;line-height:1.8}
+.upload-button{width:100%;min-height:108px;border:1.5px dashed #aaa;border-radius:10px;background:white;color:var(--text);font-size:14px}
+.upload-button.uploaded,.evidence-photo.uploaded{border-color:#8fbea1;background:#f0f7f2;color:var(--good)}
+.button-row{display:flex;gap:10px;margin-top:20px}
+.button-row button{flex:1}
+.test-layout{display:grid;grid-template-columns:180px 1fr;gap:22px;align-items:start}
+.calibration-object{height:170px;border-radius:12px;background:#f0f1ed;display:grid;place-items:center;overflow:hidden}
+.calibration-part{position:relative;width:86px;height:110px;border:2px solid #7f827b;border-radius:4px 4px 10px 10px;background:repeating-linear-gradient(to bottom,#d8dad4 0 5px,#bfc2ba 5px 7px);transform:perspective(140px) rotateX(8deg)}
+.calibration-part:before{content:"";position:absolute;left:14px;right:14px;top:-22px;height:20px;border:2px solid #7f827b;border-bottom:0;border-radius:50% 50% 0 0}
+.calibration-part:after{content:"20 mm";position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:10px;font-weight:700;color:#565952}
+.quality-tags,.eligibility-list,.restriction-list{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0}
+.quality-tag{padding:7px 9px;border-radius:7px;background:var(--soft);font-size:12px}
+.evidence-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
+.evidence-photo{min-height:130px;padding:12px;border:1.5px dashed #aaa;border-radius:10px;background:white;color:var(--text);font-size:13px}
+.evidence-photo span{display:block;color:var(--muted);font-size:12px;margin-top:7px}
+.measurement{max-width:260px}
+.measurement input{width:120px}
+.inline-success{margin:10px 0;color:var(--good);font-size:13px;font-weight:700}
+.check-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
+.check-item{padding:12px;border:1px solid var(--line);border-radius:8px;font-size:13px}
+.check-item.passed{border-color:#b8d8c4;color:var(--good);background:#f5faf6}
+.verified-card{padding:20px;border:1px solid #b8d8c4;border-left:4px solid var(--good);border-radius:10px;background:#f5faf6;margin:18px 0}
+.verified-card h2{margin:4px 0 8px}
+.verified-stamp{font-size:11px;font-weight:800;color:var(--good);letter-spacing:.08em}
+.capability-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.material-status{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.material-status button{padding:8px 10px;font-size:12px}
+.eligibility-list,.restriction-list{display:grid;grid-template-columns:1fr 1fr;list-style:none;padding:0}
+.reliability-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.reliability-metric{padding:11px;background:white;border:1px solid var(--line);border-radius:8px}
+.reliability-metric span{display:block;font-size:11px;color:var(--muted);margin-bottom:5px}
+.reliability-metric strong{font-size:14px}
+.toast{position:fixed;left:50%;bottom:24px;z-index:10;transform:translate(-50%,20px);opacity:0;pointer-events:none;padding:12px 16px;border-radius:8px;background:var(--dark);color:white;font-size:13px;transition:opacity .2s,transform .2s}
+.toast.visible{transform:translate(-50%,0);opacity:1}
 @media(max-width:760px){
   .shell{display:block}
   aside{height:auto;position:static;border-right:0;border-bottom:1px solid var(--line);padding:18px}
@@ -97,6 +145,15 @@ button{
   h1{letter-spacing:-1.4px}
   .flow{grid-template-columns:1fr}
   .arrow{transform:rotate(90deg);text-align:center}
+  .qualification-steps{grid-template-columns:repeat(5,minmax(70px,1fr));overflow-x:auto;padding-bottom:5px}
+  .qualification-step{font-size:11px}
+  .printer-summary{grid-template-columns:1fr}
+  .test-layout{grid-template-columns:1fr}
+  .calibration-object{height:130px}
+  .evidence-grid{grid-template-columns:1fr}
+  .evidence-photo{min-height:85px}
+  .check-list,.eligibility-list,.restriction-list{grid-template-columns:1fr}
+  .reliability-grid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -118,9 +175,9 @@ button{
   <h1 data-i18n="introTitle">让你的闲置的打印机，变成一个简单的本地服务</h1>
   <p class="lead" data-i18n="introLead">你的顾客会上传模型。平台负责检查、报价、匹配和付款。你只需要接收适合自己设备和时间的订单。</p>
   <div class="flow">
-    <div class="flowbox"><b data-i18n="customer">顾客</b><br><span data-i18n="uploadModel">上传 3D 模型</span></div><div class="arrow">→</div>
-    <div class="flowbox"><b data-i18n="platform">平台</b><br><span data-i18n="checkQuoteMatch">检查 · 报价 · 匹配</span></div><div class="arrow">→</div>
-    <div class="flowbox"><b data-i18n="you">你</b><br><span data-i18n="acceptPrintComplete">接受 · 打印 · 完成</span></div>
+    <div class="flowbox"><b data-i18n="registerMaker">注册 Maker 资格</b><br><span data-i18n="verifyPrinterTest">验证打印机 · 完成测试打印</span></div><div class="arrow">→</div>
+    <div class="flowbox"><b data-i18n="platform">平台</b><br><span data-i18n="verifyAndMatch">验证能力 · 匹配订单</span></div><div class="arrow">→</div>
+    <div class="flowbox"><b data-i18n="verifiedMaker">已验证 Maker</b><br><span data-i18n="acceptPrintComplete">接受 · 打印 · 完成</span></div>
   </div>
   <div class="question"><p data-i18n="introQuestion">看到这里，你觉得这个服务是怎么运作的？哪里还不清楚？</p></div>
   <div class="nav"><span></span><button class="primary" onclick="go(1)" data-i18n="start">开始体验 →</button></div>
@@ -131,20 +188,128 @@ button{
   <h1 data-i18n="printerTitle">告诉平台你的打印能力。</h1>
   <p class="lead" data-i18n="printerLead">这些信息用于自动过滤不适合你的订单。你仍然可以决定什么时候接单。</p>
   <div class="card">
-    <label data-i18n="printerLabel">Printer</label><select><option>Bambu Lab P1S</option><option data-i18n="anycubicPrinter">Anycubic Kobra 3 — 消费级 FDM</option><option>Creality Ender-3 V3 SE</option><option>Prusa MK4S</option><option data-i18n="otherPrinter">Other printer</option></select>
+    <label data-i18n="printerLabel">Printer</label><select id="printerSelect"><option value="bambu-p1s">Bambu Lab P1S</option><option value="anycubic-kobra-3" data-i18n="anycubicPrinter">Anycubic Kobra 3 — 消费级 FDM</option><option value="ender-3-v3-se">Creality Ender-3 V3 SE</option><option value="prusa-mk4s">Prusa MK4S</option><option value="other" data-i18n="otherPrinter">Other printer</option></select>
     <label data-i18n="materialsLabel">available materials</label>
     <div class="checks"><div class="chip on">PLA</div><div class="chip on">PETG</div><div class="chip">TPU</div><div class="chip">ABS</div></div>
     <label data-i18n="sizeLabel">max printing size</label><input value="256 × 256 × 256 mm">
     <label data-i18n="timeLabel">max printing time per job</label><select><option>8 hours</option><option>4 hours</option><option>12 hours</option><option data-i18n="noLimit">No limit</option></select>
     <label data-i18n="daysLabel">available days</label>
     <div class="checks"><div class="chip">Mon</div><div class="chip on">Tue</div><div class="chip on">Wed</div><div class="chip">Thu</div><div class="chip on">Fri</div><div class="chip on">Sat</div><div class="chip on">Sun</div></div>
+    <div class="status-row"><div><b id="profilePrinterName">Bambu Lab P1S</b><div class="data-label" data-i18n="qualificationStatus">Qualification status</div><div id="profileCapabilities" class="data-label" hidden></div></div><span class="status-pill" id="profileQualificationStatus" data-i18n="notVerified">Not verified</span></div>
+    <button class="secondary" id="profileQualificationButton" type="button" onclick="go(2)" data-i18n="completeVerification">Complete verification</button>
   </div>
   <div class="question"><p data-i18n="printerQuestion">这些信息够不够让平台判断一个订单适不适合你的打印机？还需要知道什么？</p></div>
-  <div class="nav"><button class="secondary" onclick="go(0)" data-i18n="back">← 返回</button><button class="primary" onclick="go(2)" data-i18n="orderReceived">收到订单 →</button></div>
+  <div class="nav"><button class="secondary" onclick="go(0)" data-i18n="back">← 返回</button><button class="primary" id="profileNextButton" onclick="go(2)" data-i18n="startQualification">开始资格验证 →</button></div>
 </section>
 
 <section class="page">
-  <div class="eyebrow">03 · Smart matching</div>
+  <div class="eyebrow">03 · Qualification</div>
+  <h1 data-i18n="qualificationTitle">验证 Maker 资格</h1>
+  <p class="lead" data-i18n="qualificationLead">完成简单的打印机验证和标准测试打印，通过后即可开始接收匹配订单。</p>
+  <div class="qualification-steps" id="qualificationSteps"></div>
+
+  <div class="qualification-panel active" data-qualification-panel="0">
+    <div class="card">
+      <h2 data-i18n="verifyYourPrinter">验证你的打印机</h2>
+      <p data-i18n="printerVerifyIntro">开始接收订单前，我们需要确认你能使用注册的打印机。</p>
+      <div class="printer-summary">
+        <div><span data-i18n="registeredPrinter">注册的打印机</span><strong id="registeredPrinterName">Bambu Lab P1S</strong></div>
+        <div><span data-i18n="buildVolume">成型尺寸</span><strong>256 × 256 × 256 mm</strong></div>
+        <div><span data-i18n="supportedMaterials">支持材料</span><strong>PLA · PETG · ABS · ASA</strong></div>
+      </div>
+      <p><span data-i18n="verificationCodeLabel">你的验证代码</span> <span class="verification-code">PN-4827</span></p>
+      <p data-i18n="photoInstructions">请拍一张照片，清楚展示以下内容：</p>
+      <ul class="instruction-list"><li data-i18n="photoPrinter">你注册的打印机</li><li data-i18n="photoFullBody">完整的打印机机身</li><li data-i18n="photoCode">写有验证代码 PN-4827 的纸条</li></ul>
+      <button class="upload-button" id="printerPhotoButton" type="button"><span data-i18n="uploadVerificationPhoto">上传验证照片</span><br><small id="printerPhotoStatus" data-i18n="clickToSimulate">点击模拟上传</small></button>
+      <div class="inline-success" id="printerVerifiedMessage" data-i18n="printerVerified" hidden>✓ 打印机已验证</div>
+      <div class="button-row"><button class="primary" id="verifyPrinterButton" type="button" disabled data-i18n="verifyPrinter">验证打印机</button><button class="secondary" id="toQualificationPrint" type="button" hidden data-i18n="continue">继续 →</button></div>
+    </div>
+  </div>
+
+  <div class="qualification-panel" data-qualification-panel="1">
+    <div class="card">
+      <h2 data-i18n="qualificationPrintTitle">完成资格测试打印</h2>
+      <p data-i18n="qualificationPrintLead">打印这个小型标准测试件，证明打印机已校准并能满足平台的基础质量要求。</p>
+      <div class="test-layout">
+        <div class="calibration-object" role="img" data-i18n-aria="calibrationIllustration"><div class="calibration-part"></div></div>
+        <div>
+          <h3 data-i18n="qualificationTest">资格测试 · PLA / 标准质量</h3>
+          <div class="settings">
+            <div class="setting"><span data-i18n="estimatedTime">预计时间</span><b>15 min</b></div>
+            <div class="setting"><span data-i18n="estimatedMaterial">预计材料</span><b>8 g</b></div>
+            <div class="setting"><span data-i18n="material">材料</span><b>PLA</b></div>
+            <div class="setting"><span data-i18n="quality">质量等级</span><b data-i18n="standardQuality">标准</b></div>
+            <div class="setting"><span data-i18n="printerLabel">打印机</span><b id="testPrinterName">Bambu Lab P1S</b></div>
+          </div>
+        </div>
+      </div>
+      <p data-i18n="testEvaluates">测试件用于展示以下能力：</p>
+      <div class="quality-tags"><span class="quality-tag" data-i18n="firstLayer">首层质量</span><span class="quality-tag" data-i18n="surfaceQuality">表面质量</span><span class="quality-tag" data-i18n="bridging">桥接</span><span class="quality-tag" data-i18n="overhang">悬垂</span><span class="quality-tag" data-i18n="stringing">拉丝</span><span class="quality-tag" data-i18n="dimensionalAccuracy">尺寸精度</span></div>
+      <div class="inline-success" id="modelDownloadedMessage" data-i18n="modelDownloaded" hidden>✓ 资格测试模型已准备好</div>
+      <div class="button-row"><button class="primary" id="downloadQualificationModel" type="button" data-i18n="downloadQualificationModel">下载资格测试模型</button><button class="secondary" id="finishQualificationPrint" type="button" disabled data-i18n="finishedThePrint">我已完成打印</button></div>
+    </div>
+  </div>
+
+  <div class="qualification-panel" data-qualification-panel="2">
+    <div class="card">
+      <h2 data-i18n="showUsResult">展示打印结果</h2>
+      <p data-i18n="evidenceLead">上传几张照片，让平台确认基础打印质量。</p>
+      <div class="evidence-grid">
+        <button class="evidence-photo" type="button" data-photo-index="0"><b data-i18n="photoOne">照片 1</b><span data-i18n="frontView">正面</span><span data-i18n="addPhoto">＋ 添加照片</span></button>
+        <button class="evidence-photo" type="button" data-photo-index="1"><b data-i18n="photoTwo">照片 2</b><span data-i18n="sideView">侧面</span><span data-i18n="addPhoto">＋ 添加照片</span></button>
+        <button class="evidence-photo" type="button" data-photo-index="2"><b data-i18n="photoThree">照片 3</b><span data-i18n="topDetailView">顶部 / 细节</span><span data-i18n="addPhoto">＋ 添加照片</span></button>
+      </div>
+      <div class="measurement">
+        <label for="measurementInput" data-i18n="basicMeasurement">基础尺寸测量</label>
+        <p data-i18n="measureWidth">测量标记区域的宽度。预期值：20.0 mm</p>
+        <input id="measurementInput" type="number" min="0" step="0.1" value="20.1" aria-label="Measurement in millimeters" data-i18n-aria="measurementAria"><span> mm</span>
+        <div class="inline-success" id="measurementStatus" data-i18n="withinTolerance">✓ 在允许误差范围内</div>
+      </div>
+      <div class="button-row"><button class="secondary" type="button" id="backToTestPrint" data-i18n="back">← 返回</button><button class="primary" type="button" id="submitQualificationEvidence" data-i18n="submitVerification">提交审核</button></div>
+    </div>
+  </div>
+
+  <div class="qualification-panel" data-qualification-panel="3">
+    <div class="card">
+      <h2 data-i18n="processingTitle">正在检查资格测试打印…</h2>
+      <p data-i18n="processingLead">正在根据平台的基础质量要求检查你的测试打印。</p>
+      <div class="check-list" id="qualificationChecks"></div>
+    </div>
+  </div>
+
+  <div class="qualification-panel" data-qualification-panel="4">
+    <div class="card">
+      <h2 data-i18n="youreVerified">你已通过验证。</h2>
+      <p data-i18n="verifiedLead">你的打印机现在可以接收 Print Nearby 上与其能力匹配的订单。</p>
+      <div class="verified-card">
+        <div class="verified-stamp" data-i18n="verifiedMakerStamp">已验证 Maker</div>
+        <h2 id="verifiedPrinterName">Bambu Lab P1S</h2>
+        <div data-i18n="verifiedCapability">已验证能力</div>
+        <div class="capability-list"><span class="quality-tag">FDM</span><span class="quality-tag">PLA</span><span class="quality-tag" data-i18n="standardQuality">标准质量</span><span class="quality-tag">256 × 256 × 256 mm</span></div>
+        <p><strong data-i18n="qualificationStatus">资格状态</strong></p>
+        <div class="verify"><div data-i18n="printerVerified">✓ 打印机已验证</div><div data-i18n="plaPassed">✓ PLA 资格测试已通过</div></div>
+        <p><strong data-i18n="verifiedCapabilityLabel">已验证：Bambu Lab P1S · PLA · 标准质量</strong></p>
+      </div>
+      <h3 data-i18n="materialQualifications">材料资格</h3>
+      <div class="material-status"><strong>PLA</strong><span class="status-pill verified" data-i18n="verified">✓ 已验证</span><span></span></div>
+      <div class="material-status"><strong>PETG</strong><span data-i18n="notVerified">未验证</span><button class="secondary" type="button" data-material="PETG" data-i18n="verifyAction">验证 →</button></div>
+      <div class="material-status"><strong>TPU</strong><span data-i18n="notVerified">未验证</span><button class="secondary" type="button" data-material="TPU" data-i18n="verifyAction">验证 →</button></div>
+      <div class="material-status"><strong>ABS</strong><span data-i18n="notVerified">未验证</span><button class="secondary" type="button" data-material="ABS" data-i18n="verifyAction">验证 →</button></div>
+      <div class="protection"><b data-i18n="newVerifiedMaker">新晋已验证 Maker</b><p data-i18n="provisionalExplanation">先从较低风险的订单开始，逐步建立你的可靠履约记录。</p>
+        <strong data-i18n="eligibleJobs">可接订单</strong><ul class="eligibility-list"><li data-i18n="plaEligible">✓ PLA</li><li data-i18n="standardEligible">✓ 标准质量</li><li data-i18n="timeEligible">✓ 打印时间少于 4 小时</li><li data-i18n="complexityEligible">✓ 低 / 中等复杂度</li></ul>
+        <strong data-i18n="temporarilyRestricted">暂不开放</strong><ul class="restriction-list"><li data-i18n="longPrintRestricted">○ 长时间打印</li><li data-i18n="tightToleranceRestricted">○ 高精度零件</li><li data-i18n="advancedMaterialRestricted">○ 高级材料</li><li data-i18n="highComplexityRestricted">○ 高复杂度模型</li></ul>
+      </div>
+      <h3 data-i18n="yourReliability">你的可靠性记录</h3>
+      <p data-i18n="noJobsYet">你还没有完成顾客订单。</p><p data-i18n="reliabilityExplanation">随着你完成真实订单，平台会逐步建立你的可靠性档案。</p>
+      <div class="reliability-grid"><div class="reliability-metric"><span data-i18n="successRate">打印成功率</span><strong>—</strong></div><div class="reliability-metric"><span data-i18n="onTimeRate">按时完成率</span><strong>—</strong></div><div class="reliability-metric"><span data-i18n="reprintRate">重打率</span><strong>—</strong></div><div class="reliability-metric"><span data-i18n="completedJobs">完成订单数</span><strong>0</strong></div></div>
+      <div class="question"><b data-i18n="futureProfile">未来的 Maker 档案示例</b><div class="reliability-grid"><div class="reliability-metric"><span data-i18n="successRate">打印成功率</span><strong>96%</strong></div><div class="reliability-metric"><span data-i18n="onTimeRate">按时完成率</span><strong>94%</strong></div><div class="reliability-metric"><span data-i18n="reprintRate">重打率</span><strong>2%</strong></div><div class="reliability-metric"><span data-i18n="completedJobs">完成订单数</span><strong>47</strong></div></div><small data-i18n="illustrativeOnly">仅作示意</small></div>
+      <div class="button-row"><button class="primary" type="button" onclick="go(3)" data-i18n="eligibleForMatching">进入智能匹配 →</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">04 · Smart matching</div>
   <h1 data-i18n="matchingTitle">平台只把匹配的订单发给你。</h1>
   <div class="card">
     <div class="jobhead"><div><small data-i18n="newRequest">NEW PRINT REQUEST</small><p style="margin:5px 0" data-i18n="objectPhoto">photo of the object to be printed</p></div><div class="badge" data-i18n="modelChecked">Model checked</div></div>
@@ -157,15 +322,16 @@ button{
       <div class="metric"><span data-i18n="customerLabel">Customer</span><strong data-i18n="distance">1.8 km away</strong></div>
       <div class="metric"><span data-i18n="youEarn">You earn</span><strong>€14.20</strong></div>
     </div>
-    <div class="verify"><div data-i18n="fitsPrinter">✓ Fits your printer</div><div data-i18n="geometryOk">✓ No major geometry issues</div><div data-i18n="customerPaid">✓ Customer has paid</div></div>
-    <div class="actions"><button class="secondary" data-i18n="decline">Decline</button><button class="primary" onclick="go(3)" data-i18n="accept">Accept</button></div>
+    <div class="protection"><b data-i18n="whyMatched">为什么匹配给你</b><div class="verify"><div data-i18n="matchingPrinter">✓ Bambu Lab P1S 支持此模型</div><div data-i18n="matchingPla">✓ PLA 资格已验证</div><div data-i18n="matchingTime">✓ 符合你的可用打印时长</div><div data-i18n="matchingDistance">✓ 顾客距离 1.8 公里</div><div data-i18n="customerPaid">✓ 顾客已付款</div></div><span class="status-pill" id="matchingMakerStatus" data-i18n="newVerifiedMaker">新晋已验证 Maker</span></div>
+    <div class="verify"><div data-i18n="geometryOk">✓ 模型没有明显几何问题</div></div>
+    <div class="actions"><button class="secondary" data-i18n="decline">Decline</button><button class="primary" onclick="go(4)" data-i18n="accept">Accept</button></div>
   </div>
   <div class="question"><p data-i18n="matchingQuestion">如果你真的收到这个订单，这些信息够你决定接不接吗？缺什么？你希望平台定价，还是自己报价？</p></div>
-  <div class="nav"><button class="secondary" onclick="go(1)" data-i18n="back">← 返回</button><button class="primary" onclick="go(3)" data-i18n="assumeAccept">假设接受 →</button></div>
+  <div class="nav"><button class="secondary" onclick="go(2)" data-i18n="back">← 返回</button><button class="primary" onclick="go(4)" data-i18n="assumeAccept">假设接受 →</button></div>
 </section>
 
 <section class="page">
-  <div class="eyebrow">04 · Ready to print</div>
+  <div class="eyebrow">05 · Ready to print</div>
   <h1 data-i18n="readyTitle">减少准备工作，但保留必要控制。</h1>
   <p class="lead" data-i18n="readyLead">平台根据模型和设备提供建议参数。这里故意保留两种方式，用来讨论你愿意把多少控制交给平台。</p>
   <div class="card">
@@ -179,11 +345,11 @@ button{
     <div class="actions"><button class="secondary" data-i18n="downloadStl">Download original STL</button><button class="primary" data-i18n="usePrepared">Use prepared file</button></div>
   </div>
   <div class="question"><p data-i18n="readyQuestion">你会信任平台准备好的打印参数/文件吗？哪些设置你一定想自己检查或修改？</p></div>
-  <div class="nav"><button class="secondary" onclick="go(2)" data-i18n="back">← 返回</button><button class="primary" onclick="go(4)" data-i18n="printComplete">打印完成 →</button></div>
+  <div class="nav"><button class="secondary" onclick="go(3)" data-i18n="back">← 返回</button><button class="primary" onclick="go(5)" data-i18n="printComplete">打印完成 →</button></div>
 </section>
 
 <section class="page">
-  <div class="eyebrow">05 · Quality check</div>
+  <div class="eyebrow">06 · Quality check</div>
   <h1 data-i18n="qualityTitle">完成前做一次轻量确认。</h1>
   <div class="card">
     <h2 style="margin-top:0" data-i18n="printCompleteQuestion">Print complete?</h2>
@@ -193,11 +359,11 @@ button{
     <button class="primary" style="width:100%;margin-top:22px" data-i18n="submitComplete">Submit & mark complete</button>
   </div>
   <div class="question"><p data-i18n="qualityQuestion">拍一张照片作为完成证明合理吗？你愿意做什么程度的质量检查？什么检查会太麻烦？</p></div>
-  <div class="nav"><button class="secondary" onclick="go(3)" data-i18n="back">← 返回</button><button class="primary" onclick="go(5)" data-i18n="ifFailed">如果失败了 →</button></div>
+  <div class="nav"><button class="secondary" onclick="go(4)" data-i18n="back">← 返回</button><button class="primary" onclick="go(6)" data-i18n="ifFailed">如果失败了 →</button></div>
 </section>
 
 <section class="page">
-  <div class="eyebrow">06 · Failure protection</div>
+  <div class="eyebrow">07 · Failure protection</div>
   <h1 data-i18n="failureTitle">如果打印失败，谁承担风险？</h1>
   <div class="card">
     <h2 style="margin-top:0" data-i18n="printFailed">Print failed</h2>
@@ -216,58 +382,350 @@ button{
     <div class="actions"><button class="secondary" data-i18n="returnNetwork">Return to network</button><button class="primary" data-i18n="reprint">Reprint</button></div>
   </div>
   <div class="question"><p data-i18n="failureQuestion">这种情况怎么处理对你才公平？哪些失败应该由顾客或平台承担？什么情况会让你以后不想再接单？</p></div>
-  <div class="nav"><button class="secondary" onclick="go(4)" data-i18n="back">← 返回</button><button class="primary" onclick="go(0)" data-i18n="restart">重新开始 ↻</button></div>
+  <div class="nav"><button class="secondary" onclick="go(5)" data-i18n="back">← 返回</button><button class="primary" onclick="go(0)" data-i18n="restart">重新开始 ↻</button></div>
 
 </section>
 </main>
 </div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 const translations={
   zh:{subtitle:"Maker-side concept walkthrough<br>感谢你接受概念访谈！",steps:["概念","打印机设置","智能匹配","打印准备","质量确认","失败处理"],introTitle:"让你的闲置的打印机，变成一个简单的本地服务",introLead:"你的顾客会上传模型。平台负责检查、报价、匹配和付款。你只需要接收适合自己设备和时间的订单。",customer:"顾客",uploadModel:"上传 3D 模型",platform:"平台",checkQuoteMatch:"检查 · 报价 · 匹配",you:"你",acceptPrintComplete:"接受 · 打印 · 完成",introQuestion:"看到这里，你觉得这个服务是怎么运作的？哪里还不清楚？",start:"开始体验 →",printerTitle:"告诉平台你的打印能力。",printerLead:"这些信息用于自动过滤不适合你的订单。你仍然可以决定什么时候接单。",printerLabel:"打印机",otherPrinter:"其他打印机",materialsLabel:"可打印材料",sizeLabel:"最大打印尺寸",timeLabel:"单个订单最长打印时间",daysLabel:"可接单日期",noLimit:"不限",printerQuestion:"这些信息够不够让平台判断一个订单适不适合你的打印机？还需要知道什么？",back:"← 返回",orderReceived:"收到订单 →",matchingTitle:"平台只把匹配的订单发给你。",newRequest:"新的打印请求",objectPhoto:"待打印物品的照片",modelChecked:"模型已检查",material:"材料",printTime:"打印时间",materialUse:"材料用量",quality:"质量",standard:"标准",customerLabel:"顾客",distance:"距离 1.8 公里",youEarn:"你的收入",fitsPrinter:"✓ 符合你的打印机条件",geometryOk:"✓ 模型没有明显几何问题",customerPaid:"✓ 顾客已付款",decline:"拒绝",accept:"接受",matchingQuestion:"如果你真的收到这个订单，这些信息够你决定接不接吗？缺什么？你希望平台定价，还是自己报价？",assumeAccept:"假设接受 →",readyTitle:"减少准备工作，但保留必要控制。",readyLead:"平台根据模型和设备提供建议参数。这里故意保留两种方式，用来讨论你愿意把多少控制交给平台。",recommendedSettings:"推荐设置",layerHeight:"层高",infill:"填充率",supports:"支撑",no:"无",estimatedTime:"预计时间",downloadStl:"下载原始 STL",usePrepared:"使用处理好的文件",readyQuestion:"你会信任平台准备好的打印参数/文件吗？哪些设置你一定想自己检查或修改？",printComplete:"打印完成 →",qualityTitle:"完成前做一次简单确认。",printCompleteQuestion:"打印完成了吗？",uploadPhoto:"上传一张成品照片",printResult:"打印结果",noIssues:"没有问题",minorDefects:"轻微瑕疵",printFailed:"打印失败",submitComplete:"提交并标记为完成",qualityQuestion:"拍一张照片作为完成证明合理吗？你愿意做什么程度的质量检查？什么检查会太麻烦？",ifFailed:"如果失败了 →",failureTitle:"如果打印失败，谁承担风险？",adhesionFailure:"○ 粘附或支撑失败",filamentIssue:"○ 耗材问题",printerIssue:"○ 打印机问题",modelIssue:"○ 模型问题",other:"○ 其他",materialUsed:"已用材料",timeUsed:"已用时间",platformProtection:"平台保障",protectionExample:"示例：补偿部分材料成本；如果你无法重印，订单可以自动重新匹配给其他 Maker。",suggestSolution:"如果你有更好的解决方法建议，欢迎提供～",returnNetwork:"退回订单网络",reprint:"重新打印",failureQuestion:"这种情况怎么处理对你才公平？哪些失败应该由顾客或平台承担？什么情况会让你以后不想再接单？",restart:"重新开始 ↻",toggle:"EN",languageLabel:"Switch language"},
   en:{subtitle:"Maker-side concept walkthrough<br>Thanks for joining this concept interview!",steps:["Concept","Printer profile","Smart matching","Ready to print","Quality check","Failure protection"],introTitle:"Turn your idle 3D printer into a simple local service",introLead:"Customers upload a model. The platform checks it, provides a quote, finds a match, and handles payment. You only receive jobs that fit your printer and schedule.",customer:"Customer",uploadModel:"Upload a 3D model",platform:"Platform",checkQuoteMatch:"Check · Quote · Match",you:"You",acceptPrintComplete:"Accept · Print · Complete",introQuestion:"Now that you have seen the concept, how do you think the service works? What is still unclear?",start:"Get started →",printerTitle:"Tell the platform what your printer can do.",printerLead:"This information filters out jobs that do not fit your setup. You still choose when to accept work.",printerLabel:"Printer",otherPrinter:"Other printer",materialsLabel:"Available materials",sizeLabel:"Maximum print size",timeLabel:"Maximum print time per job",daysLabel:"Available days",noLimit:"No limit",printerQuestion:"Is this enough information for the platform to tell whether a job suits your printer? What else should it know?",back:"← Back",orderReceived:"Receive a job →",matchingTitle:"The platform only sends you jobs that fit.",newRequest:"NEW PRINT REQUEST",objectPhoto:"Photo of the object to be printed",modelChecked:"Model checked",material:"Material",printTime:"Print time",materialUse:"Material use",quality:"Quality",standard:"Standard",customerLabel:"Customer",distance:"1.8 km away",youEarn:"You earn",fitsPrinter:"✓ Fits your printer",geometryOk:"✓ No major geometry issues",customerPaid:"✓ Customer has paid",decline:"Decline",accept:"Accept",matchingQuestion:"If you received this request, would you have enough information to decide? What is missing? Should the platform set the price, or should you quote it?",assumeAccept:"Assume you accept →",readyTitle:"Less setup work, while keeping control where it matters.",readyLead:"The platform suggests settings based on the model and your printer. These two options are here to explore how much control you would hand over.",recommendedSettings:"Recommended settings",layerHeight:"Layer height",infill:"Infill",supports:"Supports",no:"No",estimatedTime:"Estimated time",downloadStl:"Download original STL",usePrepared:"Use prepared file",readyQuestion:"Would you trust print settings or a prepared file from the platform? Which settings would you need to check or change yourself?",printComplete:"Print complete →",qualityTitle:"Do a quick check before finishing.",printCompleteQuestion:"Print complete?",uploadPhoto:"Upload a photo of the finished print",printResult:"Print result",noIssues:"No issues",minorDefects:"Minor defects",printFailed:"Print failed",submitComplete:"Submit & mark complete",qualityQuestion:"Is a photo reasonable proof of completion? How much quality checking would you be willing to do? What would feel like too much hassle?",ifFailed:"What if it fails? →",failureTitle:"If a print fails, who takes the risk?",adhesionFailure:"○ Adhesion or support failure",filamentIssue:"○ Filament issue",printerIssue:"○ Printer issue",modelIssue:"○ Model issue",other:"○ Other",materialUsed:"Material used",timeUsed:"Time used",platformProtection:"Platform protection",protectionExample:"For example: cover part of the material cost. If you cannot reprint, the job can be matched with another maker.",suggestSolution:"Have a better idea for handling this? We would love to hear it.",returnNetwork:"Return to job pool",reprint:"Reprint",failureQuestion:"What would feel fair in this situation? Which failures should be the customer's or platform's responsibility? What might make you stop accepting jobs?",restart:"Start over ↻",toggle:"中文",languageLabel:"切换语言"}
 };
+const qualificationTranslations={
+  zh:{
+    registerMaker:"注册 Maker 资格",verifyPrinterTest:"验证打印机 · 完成测试打印",verifyAndMatch:"验证能力 · 匹配订单",verifiedMaker:"已验证 Maker",
+    qualificationStatus:"资格状态",notVerified:"未验证",completeVerification:"完成资格验证",startQualification:"开始资格验证 →",qualificationTitle:"验证 Maker 资格",qualificationLead:"完成简单的打印机验证和标准测试打印，通过后即可开始接收匹配订单。",
+    verifyYourPrinter:"验证你的打印机",printerVerifyIntro:"开始接收订单前，我们需要确认你能使用注册的打印机。",registeredPrinter:"注册的打印机",buildVolume:"成型尺寸",supportedMaterials:"支持材料",verificationCodeLabel:"你的验证代码",photoInstructions:"请拍一张照片，清楚展示以下内容：",photoPrinter:"你注册的打印机",photoFullBody:"完整的打印机机身",photoCode:"写有验证代码 PN-4827 的纸条",uploadVerificationPhoto:"上传验证照片",clickToSimulate:"点击模拟上传",photoUploaded:"✓ 照片已上传",printerVerified:"✓ 打印机已验证",verifyPrinter:"验证打印机",verifyingPrinter:"正在验证…",continue:"继续 →",
+    qualificationPrintTitle:"完成资格测试打印",qualificationPrintLead:"打印这个小型标准测试件，证明打印机已校准并能满足平台的基础质量要求。",qualificationTest:"资格测试 · PLA / 标准质量",estimatedMaterial:"预计材料",standardQuality:"标准质量",testEvaluates:"测试件用于展示以下能力：",firstLayer:"首层质量",surfaceQuality:"表面质量",bridging:"桥接",overhang:"悬垂",stringing:"拉丝",dimensionalAccuracy:"尺寸精度",modelDownloaded:"✓ 资格测试模型已准备好",downloadQualificationModel:"下载资格测试模型",finishedThePrint:"我已完成打印",
+    showUsResult:"展示打印结果",evidenceLead:"上传几张照片，让平台确认基础打印质量。",photoOne:"照片 1",frontView:"正面",addPhoto:"＋ 添加照片",photoTwo:"照片 2",sideView:"侧面",photoThree:"照片 3",topDetailView:"顶部 / 细节",basicMeasurement:"基础尺寸测量",measureWidth:"测量标记区域的宽度。预期值：20.0 mm",withinTolerance:"✓ 在允许误差范围内",measurementOutOfTolerance:"尺寸超出允许误差范围",submitVerification:"提交审核",processingTitle:"正在检查资格测试打印…",processingLead:"正在根据平台的基础质量要求检查你的测试打印。",layerConsistency:"层纹一致性",checking:"○ 检查中",passed:"✓ 通过",
+    youreVerified:"你已通过验证。",verifiedLead:"你的打印机现在可以接收 Print Nearby 上与其能力匹配的订单。",verifiedMakerStamp:"已验证 Maker",verifiedCapability:"已验证能力",plaPassed:"✓ PLA 资格测试已通过",verifiedCapabilityLabel:"已验证：{printer} · PLA · 标准质量",materialQualifications:"材料资格",verified:"✓ 已验证",verifyAction:"验证 →",newVerifiedMaker:"新晋已验证 Maker",provisionalExplanation:"先从较低风险的订单开始，逐步建立你的可靠履约记录。",eligibleJobs:"可接订单",plaEligible:"✓ PLA",standardEligible:"✓ 标准质量",timeEligible:"✓ 打印时间少于 4 小时",complexityEligible:"✓ 低 / 中等复杂度",temporarilyRestricted:"暂不开放",longPrintRestricted:"○ 长时间打印",tightToleranceRestricted:"○ 高精度零件",advancedMaterialRestricted:"○ 高级材料",highComplexityRestricted:"○ 高复杂度模型",yourReliability:"你的可靠性记录",noJobsYet:"你还没有完成顾客订单。",reliabilityExplanation:"随着你完成真实订单，平台会逐步建立你的可靠性档案。",successRate:"打印成功率",onTimeRate:"按时完成率",reprintRate:"重打率",completedJobs:"完成订单数",futureProfile:"未来的 Maker 档案示例",illustrativeOnly:"仅作示意",eligibleForMatching:"进入智能匹配 →",
+    whyMatched:"为什么匹配给你",matchingPrinter:"✓ {printer} 支持此模型",matchingPla:"✓ PLA 资格已验证",matchingTime:"✓ 符合你的可用打印时长",matchingDistance:"✓ 顾客距离 1.8 公里",moreMaterialRequired:"额外材料资格需要再完成一次测试打印。",calibrationIllustration:"校准测试件示意图",languageLabel:"切换语言",toggle:"EN",
+    stageVerifyPrinter:"验证打印机",stageTestPrint:"测试打印",stageEvidence:"提交证据",stageReview:"质量检查",stageResult:"验证结果",profileVerifiedCapabilities:"能力：PLA · 标准质量",qualificationRequired:"完成打印机和测试打印验证后，才能进入智能匹配。",viewQualification:"查看资格详情",continueToMatching:"进入智能匹配 →"
+  },
+  en:{
+    registerMaker:"Register as a Maker",verifyPrinterTest:"Verify your printer · Complete a test print",verifyAndMatch:"Verify capability · Match with jobs",verifiedMaker:"Verified Maker",
+    qualificationStatus:"Qualification status",notVerified:"Not verified",completeVerification:"Complete verification",startQualification:"Start qualification →",qualificationTitle:"Verify your Maker eligibility",qualificationLead:"Verify your printer and complete a standard test print. Once you pass, you can receive compatible jobs.",
+    verifyYourPrinter:"Verify your printer",printerVerifyIntro:"Before receiving jobs, we need to verify that you have access to the printer you registered.",registeredPrinter:"Registered printer",buildVolume:"Build volume",supportedMaterials:"Supported materials",verificationCodeLabel:"Your verification code",photoInstructions:"Take one photo that clearly shows:",photoPrinter:"Your registered printer",photoFullBody:"The complete printer body",photoCode:"A piece of paper displaying verification code PN-4827",uploadVerificationPhoto:"Upload verification photo",clickToSimulate:"Click to simulate an upload",photoUploaded:"✓ Photo uploaded",printerVerified:"✓ Printer verified",verifyPrinter:"Verify printer",verifyingPrinter:"Verifying…",continue:"Continue →",
+    qualificationPrintTitle:"Complete a qualification print",qualificationPrintLead:"Print this small standardized test object to show that your printer is calibrated and ready for customer jobs.",qualificationTest:"Qualification Test · PLA / Standard Quality",estimatedMaterial:"Estimated material",standardQuality:"Standard Quality",testEvaluates:"The test print demonstrates:",firstLayer:"First-layer quality",surfaceQuality:"Surface quality",bridging:"Bridging",overhang:"Overhang",stringing:"Stringing",dimensionalAccuracy:"Dimensional accuracy",modelDownloaded:"✓ Qualification model ready",downloadQualificationModel:"Download qualification model",finishedThePrint:"I've finished the print",
+    showUsResult:"Show us your result",evidenceLead:"Upload a few photos so the platform can check the basic print quality.",photoOne:"Photo 1",frontView:"Front view",addPhoto:"＋ Add photo",photoTwo:"Photo 2",sideView:"Side view",photoThree:"Photo 3",topDetailView:"Top / detail view",basicMeasurement:"Basic measurement",measureWidth:"Measure the width of the marked section. Expected: 20.0 mm",withinTolerance:"✓ Within acceptable tolerance",measurementOutOfTolerance:"Measurement is outside the acceptable tolerance",submitVerification:"Submit for verification",processingTitle:"Checking your qualification print…",processingLead:"Checking your test print against the platform's basic quality requirements.",layerConsistency:"Layer consistency",checking:"○ Checking",passed:"✓ Passed",
+    youreVerified:"You're verified.",verifiedLead:"Your printer is now eligible for compatible jobs on Print Nearby.",verifiedMakerStamp:"VERIFIED MAKER",verifiedCapability:"Verified capability",plaPassed:"✓ PLA qualification passed",verifiedCapabilityLabel:"Verified: {printer} · PLA · Standard Quality",materialQualifications:"Material qualifications",verified:"✓ Verified",verifyAction:"Verify →",newVerifiedMaker:"New Verified Maker",provisionalExplanation:"Start with lower-risk jobs while the platform builds your reliability record.",eligibleJobs:"Eligible jobs",plaEligible:"✓ PLA",standardEligible:"✓ Standard quality",timeEligible:"✓ Print time under 4 hours",complexityEligible:"✓ Low / medium complexity",temporarilyRestricted:"Temporarily restricted",longPrintRestricted:"○ Long-duration prints",tightToleranceRestricted:"○ Tight-tolerance parts",advancedMaterialRestricted:"○ Advanced materials",highComplexityRestricted:"○ High-complexity models",yourReliability:"Your reliability",noJobsYet:"No customer jobs completed yet.",reliabilityExplanation:"Your reliability profile develops as you complete real orders.",successRate:"Print success rate",onTimeRate:"On-time completion",reprintRate:"Reprint rate",completedJobs:"Completed jobs",futureProfile:"What your profile may look like later",illustrativeOnly:"Illustrative only",eligibleForMatching:"Continue to Smart Matching →",
+    whyMatched:"Why you were matched",matchingPrinter:"✓ {printer} supports this model",matchingPla:"✓ PLA qualification verified",matchingTime:"✓ Job fits your available print time",matchingDistance:"✓ Customer is 1.8 km away",moreMaterialRequired:"Additional material qualification requires another test print.",calibrationIllustration:"Calibration test object illustration",languageLabel:"Switch language",toggle:"中文",
+    stageVerifyPrinter:"Verify printer",stageTestPrint:"Test print",stageEvidence:"Submit evidence",stageReview:"Quality review",stageResult:"Result",profileVerifiedCapabilities:"Capabilities: PLA · Standard Quality",qualificationRequired:"Complete printer and test-print verification before accessing Smart Matching.",viewQualification:"View qualification",continueToMatching:"Continue to Smart Matching →"
+  }
+};
+Object.assign(translations.zh,qualificationTranslations.zh);
+Object.assign(translations.en,qualificationTranslations.en);
+translations.zh.modelDownloaded="✓ 资格测试模型已下载";
+translations.en.modelDownloaded="✓ Qualification model downloaded";
+translations.zh.measurementAria="以毫米为单位的测量值";
+translations.en.measurementAria="Measurement in millimeters";
+translations.zh.steps.splice(2,0,"资格验证");
+translations.en.steps.splice(2,0,"Qualification");
 translations.zh.anycubicPrinter="Anycubic Kobra 3 — 消费级 FDM";
 translations.en.anycubicPrinter="Anycubic Kobra 3 — consumer FDM printer";
 let currentLanguage="zh";
-const names=translations.zh.steps;
 const pages=[...document.querySelectorAll(".page")];
 const steps=document.getElementById("steps");
+const qualificationSteps=document.getElementById("qualificationSteps");
+const qualificationPanels=[...document.querySelectorAll("[data-qualification-panel]")];
+const session={
+  get(key,fallback=null){try{return sessionStorage.getItem(`pn-${key}`)??fallback}catch{return fallback}},
+  set(key,value){try{sessionStorage.setItem(`pn-${key}`,String(value))}catch{}}
+};
+let qualificationStage=Number(session.get("qualification-stage","0"));
+let qualificationMaxStage=Number(session.get("qualification-max-stage","0"));
+let printerVerified=session.get("printer-verified","false")==="true";
+let makerQualified=session.get("maker-qualified","false")==="true";
+let processingStarted=false;
+let qualificationAttempt=0;
+let toastTimer;
+const qualificationStageKeys=["stageVerifyPrinter","stageTestPrint","stageEvidence","stageReview","stageResult"];
+const qualificationCheckKeys=["surfaceQuality","dimensionalAccuracy","bridging","overhang","stringing","layerConsistency"];
+function selectedPrinterName(){
+  const select=document.getElementById("printerSelect");
+  return select.options[select.selectedIndex].textContent;
+}
+function translateElement(element){
+  const content=translations[currentLanguage];
+  const key=element.dataset.i18n;
+  if(key&&content[key]!==undefined){
+    let value=content[key];
+    if(key==="subtitle")element.innerHTML=value;
+    else {
+      if(key==="verifiedCapabilityLabel"||key==="matchingPrinter")value=value.replaceAll("{printer}",selectedPrinterName());
+      element.textContent=value;
+    }
+  }
+  const ariaKey=element.dataset.i18nAria;
+  if(ariaKey&&content[ariaKey])element.setAttribute("aria-label",content[ariaKey]);
+}
 function renderSteps(){
   steps.replaceChildren();
-  translations[currentLanguage].steps.forEach((n,i)=>{
-  const el=document.createElement("div");el.className="step"+(i===0?" active":"");
-  el.innerHTML=`<span class="num">${i+1}</span><span>${n}</span>`;
-  el.onclick=()=>go(i);steps.appendChild(el);
+  translations[currentLanguage].steps.forEach((name,index)=>{
+    const step=document.createElement("div");
+    step.className="step";
+    step.innerHTML=`<span class="num">${index+1}</span><span>${name}</span>`;
+    step.onclick=()=>go(index);
+    steps.appendChild(step);
+  });
+  const activeIndex=pages.findIndex(page=>page.classList.contains("active"));
+  [...steps.children].forEach((step,index)=>step.classList.toggle("active",index===activeIndex));
+}
+function renderQualificationSteps(){
+  qualificationSteps.replaceChildren();
+  qualificationStageKeys.forEach((key,index)=>{
+    const button=document.createElement("button");
+    button.type="button";
+    button.className="qualification-step";
+    button.dataset.i18n=key;
+    button.textContent=translations[currentLanguage][key];
+    button.classList.toggle("active",index===qualificationStage);
+    button.classList.toggle("complete",index<qualificationStage||printerVerified&&index===0);
+    button.disabled=index>qualificationMaxStage||qualificationStage===3;
+    button.addEventListener("click",()=>setQualificationStage(index));
+    qualificationSteps.appendChild(button);
   });
 }
 function setLanguage(language){
   currentLanguage=language;
-  const content=translations[language];
   document.documentElement.lang=language==="zh"?"zh-CN":"en";
-  document.querySelectorAll("[data-i18n]").forEach(element=>{
-    const value=content[element.dataset.i18n];
-    if(value!==undefined){
-      if(element.dataset.i18n==="subtitle")element.innerHTML=value;
-      else element.textContent=value;
-    }
-  });
+  document.querySelectorAll("[data-i18n], [data-i18n-aria]").forEach(translateElement);
   const toggle=document.getElementById("languageToggle");
-  toggle.textContent=content.toggle;
-  toggle.setAttribute("aria-label",content.languageLabel);
+  toggle.textContent=translations[language].toggle;
+  toggle.setAttribute("aria-label",translations[language].languageLabel);
   renderSteps();
-  const activeIndex=pages.findIndex(page=>page.classList.contains("active"));
-  [...steps.children].forEach((step,index)=>step.classList.toggle("active",index===activeIndex));
+  renderQualificationSteps();
+  renderProfileStatus();
 }
-document.getElementById("languageToggle").addEventListener("click",()=>setLanguage(currentLanguage==="zh"?"en":"zh"));
-function go(i){
-  pages.forEach((p,j)=>p.classList.toggle("active",j===i));
-  [...steps.children].forEach((s,j)=>s.classList.toggle("active",j===i));
-  document.getElementById("bar").style.width=((i+1)/pages.length*100)+"%";
+function go(index){
+  if(index>=3&&!makerQualified){
+    pages.forEach((page,pageIndex)=>page.classList.toggle("active",pageIndex===2));
+    document.getElementById("bar").style.width=(3/pages.length*100)+"%";
+    setQualificationStage(0);
+    showToast("qualificationRequired");
+    renderSteps();
+    return;
+  }
+  pages.forEach((page,pageIndex)=>page.classList.toggle("active",pageIndex===index));
+  document.getElementById("bar").style.width=((index+1)/pages.length*100)+"%";
+  renderSteps();
   window.scrollTo({top:0,behavior:"smooth"});
 }
-document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>c.classList.toggle("on"));
+function showToast(key){
+  const toast=document.getElementById("toast");
+  toast.dataset.i18n=key;
+  translateElement(toast);
+  toast.classList.add("visible");
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>toast.classList.remove("visible"),2300);
+}
+function renderProfileStatus(){
+  const printer=selectedPrinterName();
+  document.getElementById("profilePrinterName").textContent=printer;
+  document.getElementById("registeredPrinterName").textContent=printer;
+  document.getElementById("testPrinterName").textContent=printer;
+  document.getElementById("verifiedPrinterName").textContent=printer;
+  const status=document.getElementById("profileQualificationStatus");
+  status.dataset.i18n=makerQualified?"verified":"notVerified";
+  status.classList.toggle("verified",makerQualified);
+  translateElement(status);
+  const capabilities=document.getElementById("profileCapabilities");
+  capabilities.hidden=!makerQualified;
+  capabilities.dataset.i18n="profileVerifiedCapabilities";
+  translateElement(capabilities);
+  const matchingStatus=document.getElementById("matchingMakerStatus");
+  matchingStatus.dataset.i18n=makerQualified?"newVerifiedMaker":"notVerified";
+  matchingStatus.classList.toggle("verified",makerQualified);
+  translateElement(matchingStatus);
+  const qualificationButton=document.getElementById("profileQualificationButton");
+  qualificationButton.dataset.i18n=makerQualified?"viewQualification":"completeVerification";
+  qualificationButton.onclick=()=>go(2);
+  translateElement(qualificationButton);
+  const nextButton=document.getElementById("profileNextButton");
+  nextButton.dataset.i18n=makerQualified?"continueToMatching":"startQualification";
+  nextButton.onclick=()=>go(makerQualified?3:2);
+  translateElement(nextButton);
+  document.querySelectorAll("[data-i18n='verifiedCapabilityLabel'],[data-i18n='matchingPrinter']").forEach(translateElement);
+}
+function setQualificationStage(stage){
+  qualificationStage=stage;
+  session.set("qualification-stage",stage);
+  qualificationPanels.forEach((panel,index)=>panel.classList.toggle("active",index===stage));
+  renderQualificationSteps();
+  if(stage===3)runQualificationChecks();
+}
+function unlockQualificationStage(stage){
+  qualificationMaxStage=Math.max(qualificationMaxStage,stage);
+  session.set("qualification-max-stage",qualificationMaxStage);
+  renderQualificationSteps();
+}
+function updateMeasurement(){
+  const value=Number(document.getElementById("measurementInput").value);
+  const valid=Number.isFinite(value)&&Math.abs(value-20)<=0.5;
+  const status=document.getElementById("measurementStatus");
+  status.hidden=false;
+  status.dataset.i18n=valid?"withinTolerance":"measurementOutOfTolerance";
+  translateElement(status);
+  session.set("qualification-measurement",document.getElementById("measurementInput").value);
+  document.getElementById("submitQualificationEvidence").disabled=!valid||document.querySelectorAll(".evidence-photo.uploaded").length<3;
+}
+function renderCheckList(){
+  const list=document.getElementById("qualificationChecks");
+  list.replaceChildren();
+  qualificationCheckKeys.forEach(key=>{
+    const item=document.createElement("div");
+    item.className="check-item";
+    const name=document.createElement("span");
+    name.dataset.i18n=key;
+    const state=document.createElement("b");
+    state.className="check-state";
+    state.dataset.i18n="checking";
+    item.append(name,state);
+    list.appendChild(item);
+    translateElement(name);
+    translateElement(state);
+  });
+}
+function runQualificationChecks(){
+  if(processingStarted)return;
+  processingStarted=true;
+  const attempt=qualificationAttempt;
+  renderCheckList();
+  const items=[...document.querySelectorAll(".check-item")];
+  items.forEach((item,index)=>setTimeout(()=>{
+    if(attempt!==qualificationAttempt)return;
+    item.classList.add("passed");
+    const state=item.querySelector(".check-state");
+    state.dataset.i18n="passed";
+    translateElement(state);
+    if(index===items.length-1){
+      makerQualified=true;
+      session.set("maker-qualified","true");
+      qualificationMaxStage=4;
+      session.set("qualification-max-stage",4);
+      renderProfileStatus();
+      renderQualificationSteps();
+      setTimeout(()=>setQualificationStage(4),260);
+    }
+  },240*(index+1)));
+}
+function resetQualification(){
+  qualificationAttempt+=1;
+  printerVerified=false;
+  makerQualified=false;
+  qualificationStage=0;
+  qualificationMaxStage=0;
+  processingStarted=false;
+  ["printer-verified","maker-qualified","qualification-stage","qualification-max-stage","printer-photo-uploaded","qualification-model-downloaded","qualification-photos","qualification-measurement"].forEach(key=>session.set(key,key==="qualification-stage"||key==="qualification-max-stage"||key==="qualification-photos"?0:key==="qualification-measurement"?"20.1":"false"));
+  document.getElementById("printerPhotoButton").classList.remove("uploaded");
+  document.getElementById("printerPhotoStatus").dataset.i18n="clickToSimulate";
+  document.getElementById("verifyPrinterButton").disabled=true;
+  document.getElementById("verifyPrinterButton").hidden=false;
+  document.getElementById("printerVerifiedMessage").hidden=true;
+  document.getElementById("toQualificationPrint").hidden=true;
+  document.getElementById("modelDownloadedMessage").hidden=true;
+  document.getElementById("finishQualificationPrint").disabled=true;
+  document.querySelectorAll(".evidence-photo").forEach(photo=>{photo.classList.remove("uploaded");photo.lastElementChild.dataset.i18n="addPhoto"});
+  document.getElementById("measurementInput").value="20.1";
+  setLanguage(currentLanguage);
+  renderQualificationSteps();
+  renderProfileStatus();
+  setQualificationStage(0);
+}
+document.getElementById("languageToggle").addEventListener("click",()=>setLanguage(currentLanguage==="zh"?"en":"zh"));
+document.getElementById("printerSelect").addEventListener("change",event=>{
+  const previous=session.get("printer","bambu-p1s");
+  session.set("printer",event.target.value);
+  if(previous!==event.target.value)resetQualification();
+  renderProfileStatus();
+});
+document.getElementById("printerPhotoButton").addEventListener("click",()=>{
+  document.getElementById("printerPhotoButton").classList.add("uploaded");
+  const status=document.getElementById("printerPhotoStatus");
+  status.dataset.i18n="photoUploaded";
+  translateElement(status);
+  session.set("printer-photo-uploaded","true");
+  document.getElementById("verifyPrinterButton").disabled=false;
+});
+document.getElementById("verifyPrinterButton").addEventListener("click",event=>{
+  const button=event.currentTarget;
+  const attempt=qualificationAttempt;
+  button.disabled=true;
+  button.dataset.i18n="verifyingPrinter";
+  translateElement(button);
+  setTimeout(()=>{
+    if(attempt!==qualificationAttempt)return;
+    printerVerified=true;
+    session.set("printer-verified","true");
+    unlockQualificationStage(1);
+    document.getElementById("printerVerifiedMessage").hidden=false;
+    button.hidden=true;
+    document.getElementById("toQualificationPrint").hidden=false;
+    renderProfileStatus();
+  },1000);
+});
+document.getElementById("toQualificationPrint").addEventListener("click",()=>setQualificationStage(1));
+document.getElementById("downloadQualificationModel").addEventListener("click",()=>{
+  document.getElementById("modelDownloadedMessage").hidden=false;
+  document.getElementById("finishQualificationPrint").disabled=false;
+  session.set("qualification-model-downloaded","true");
+});
+document.getElementById("finishQualificationPrint").addEventListener("click",()=>{
+  unlockQualificationStage(2);
+  setQualificationStage(2);
+});
+document.querySelectorAll(".evidence-photo").forEach(photo=>photo.addEventListener("click",()=>{
+  photo.classList.add("uploaded");
+  photo.lastElementChild.dataset.i18n="photoUploaded";
+  translateElement(photo.lastElementChild);
+  const count=document.querySelectorAll(".evidence-photo.uploaded").length;
+  session.set("qualification-photos",count);
+  updateMeasurement();
+}));
+document.getElementById("measurementInput").addEventListener("input",updateMeasurement);
+document.getElementById("backToTestPrint").addEventListener("click",()=>setQualificationStage(1));
+document.getElementById("submitQualificationEvidence").addEventListener("click",()=>{
+  if(document.querySelectorAll(".evidence-photo.uploaded").length<3)return;
+  unlockQualificationStage(3);
+  setQualificationStage(3);
+});
+document.querySelectorAll("[data-material]").forEach(button=>button.addEventListener("click",()=>showToast("moreMaterialRequired")));
+document.querySelectorAll(".chip").forEach(chip=>chip.onclick=()=>chip.classList.toggle("on"));
+const printerSelect=document.getElementById("printerSelect");
+const savedPrinter=session.get("printer","bambu-p1s");
+if([...printerSelect.options].some(option=>option.value===savedPrinter))printerSelect.value=savedPrinter;
+if(!printerVerified){qualificationStage=0;qualificationMaxStage=Math.max(qualificationMaxStage,qualificationStage)}
+document.getElementById("printerPhotoButton").classList.toggle("uploaded",session.get("printer-photo-uploaded","false")==="true");
+document.getElementById("verifyPrinterButton").disabled=session.get("printer-photo-uploaded","false")!=="true";
+if(printerVerified){
+  document.getElementById("printerVerifiedMessage").hidden=false;
+  document.getElementById("verifyPrinterButton").hidden=true;
+  document.getElementById("toQualificationPrint").hidden=false;
+}
+if(session.get("printer-photo-uploaded","false")==="true"){
+  document.getElementById("printerPhotoStatus").dataset.i18n="photoUploaded";
+}
+const savedPhotoCount=Number(session.get("qualification-photos","0"));
+document.querySelectorAll(".evidence-photo").forEach((photo,index)=>{
+  if(index<savedPhotoCount){
+    photo.classList.add("uploaded");
+    photo.lastElementChild.dataset.i18n="photoUploaded";
+  }
+});
+const savedMeasurement=session.get("qualification-measurement");
+if(savedMeasurement!==null)document.getElementById("measurementInput").value=savedMeasurement;
+if(session.get("qualification-model-downloaded","false")==="true"){
+  document.getElementById("modelDownloadedMessage").hidden=false;
+  document.getElementById("finishQualificationPrint").disabled=false;
+}
 setLanguage("zh");
+renderProfileStatus();
+setQualificationStage(qualificationStage);
+updateMeasurement();
+document.getElementById("bar").style.width=(pages.findIndex(page=>page.classList.contains("active"))+1)/pages.length*100+"%";
 </script>
 </body>
 </html>
