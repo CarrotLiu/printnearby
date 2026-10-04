@@ -117,7 +117,7 @@ button{
     <div class="flowbox"><b>平台</b><br>检查 · 报价 · 匹配</div><div class="arrow">→</div>
     <div class="flowbox"><b>你</b><br>接受 · 打印 · 完成</div>
   </div>
-  <div class="question"><b>先确认</b><p>看到这里，你觉得这个服务是怎么运作的？哪里还不清楚？</p></div>
+  <div class="question"><p>看到这里，你觉得这个服务是怎么运作的？哪里还不清楚？</p></div>
   <div class="nav"><span></span><button class="primary" onclick="go(1)">开始体验 →</button></div>
 </section>
 
@@ -126,15 +126,15 @@ button{
   <h1>告诉平台你的打印能力。</h1>
   <p class="lead">这些信息用于自动过滤不适合你的订单。你仍然可以决定什么时候接单。</p>
   <div class="card">
-    <label>Printer</label><select><option>Bambu Lab P1S</option><option>Other printer</option></select>
-    <label>可打印材料</label>
+    <label>Printer</label><select><option>Bambu Lab P1S</option><option>Anycubic Kobra 3 — 消费级 FDM</option><option>Creality Ender-3 V3 SE</option><option>Prusa MK4S</option><option>Other printer</option></select>
+    <label>available materials</label>
     <div class="checks"><div class="chip on">PLA</div><div class="chip on">PETG</div><div class="chip">TPU</div><div class="chip">ABS</div></div>
-    <label>最大打印尺寸</label><input value="256 × 256 × 256 mm">
-    <label>单个订单最长打印时间</label><select><option>8 hours</option><option>4 hours</option><option>12 hours</option><option>No limit</option></select>
-    <label>本周可接单</label>
-    <div class="checks"><div class="chip">Mon</div><div class="chip on">Tue</div><div class="chip on">Wed</div><div class="chip">Thu</div><div class="chip on">Fri</div></div>
+    <label>max printing size</label><input value="256 × 256 × 256 mm">
+    <label>max printing time per job</label><select><option>8 hours</option><option>4 hours</option><option>12 hours</option><option>No limit</option></select>
+    <label>available days</label>
+    <div class="checks"><div class="chip">Mon</div><div class="chip on">Tue</div><div class="chip on">Wed</div><div class="chip">Thu</div><div class="chip on">Fri</div><div class="chip on">Sat</div><div class="chip on">Sun</div></div>
   </div>
-  <div class="question"><b>问她</b><p>这些信息够不够让平台判断一个订单适不适合你的打印机？还需要知道什么？</p></div>
+  <div class="question"><p>这些信息够不够让平台判断一个订单适不适合你的打印机？还需要知道什么？</p></div>
   <div class="nav"><button class="secondary" onclick="go(0)">← 返回</button><button class="primary" onclick="go(2)">收到订单 →</button></div>
 </section>
 
@@ -155,7 +155,7 @@ button{
     <div class="verify"><div>✓ Fits your printer</div><div>✓ No major geometry issues</div><div>✓ Customer has paid</div></div>
     <div class="actions"><button class="secondary">Decline</button><button class="primary" onclick="go(3)">Accept</button></div>
   </div>
-  <div class="question"><b>问她</b><p>如果你真的收到这个订单，这些信息够你决定接不接吗？缺什么？你希望平台定价，还是自己报价？</p></div>
+  <div class="question"><p>如果你真的收到这个订单，这些信息够你决定接不接吗？缺什么？你希望平台定价，还是自己报价？</p></div>
   <div class="nav"><button class="secondary" onclick="go(1)">← 返回</button><button class="primary" onclick="go(3)">假设接受 →</button></div>
 </section>
 
@@ -173,7 +173,7 @@ button{
     </div>
     <div class="actions"><button class="secondary">Download original STL</button><button class="primary">Use prepared file</button></div>
   </div>
-  <div class="question"><b>关键问题</b><p>你会信任平台准备好的打印参数/文件吗？哪些设置你一定想自己检查或修改？</p></div>
+  <div class="question"><p>你会信任平台准备好的打印参数/文件吗？哪些设置你一定想自己检查或修改？</p></div>
   <div class="nav"><button class="secondary" onclick="go(2)">← 返回</button><button class="primary" onclick="go(4)">打印完成 →</button></div>
 </section>
 
@@ -187,7 +187,7 @@ button{
     <div class="checks"><div class="chip on">No issues</div><div class="chip">Minor defects</div><div class="chip">Print failed</div></div>
     <button class="primary" style="width:100%;margin-top:22px">Submit & mark complete</button>
   </div>
-  <div class="question"><b>问她</b><p>拍一张照片作为完成证明合理吗？你愿意做什么程度的质量检查？什么检查会太麻烦？</p></div>
+  <div class="question"><p>拍一张照片作为完成证明合理吗？你愿意做什么程度的质量检查？什么检查会太麻烦？</p></div>
   <div class="nav"><button class="secondary" onclick="go(3)">← 返回</button><button class="primary" onclick="go(5)">如果失败了 →</button></div>
 </section>
 
@@ -210,9 +210,9 @@ button{
     <div class="protection"><b>Platform protection</b><p>示例：补偿部分材料成本；如果你无法重印，订单可以自动重新匹配给其他 Maker。</p><small>这不是最终政策——正要通过访谈验证。</small></div>
     <div class="actions"><button class="secondary">Return to network</button><button class="primary">Reprint</button></div>
   </div>
-  <div class="question"><b>最重要的问题</b><p>这种情况怎么处理对你才公平？哪些失败应该由 Maker、顾客或平台承担？什么情况会让你以后不想再接单？</p></div>
+  <div class="question"><p>这种情况怎么处理对你才公平？哪些失败应该由 Maker、顾客或平台承担？什么情况会让你以后不想再接单？</p></div>
   <div class="nav"><button class="secondary" onclick="go(4)">← 返回</button><button class="primary" onclick="go(0)">重新开始 ↻</button></div>
-  <p class="note">访谈结束后建议记录：她要求新增的信息、她不愿交给平台的控制、最大的风险，以及最能提高接单意愿的功能。</p>
+
 </section>
 </main>
 </div>
