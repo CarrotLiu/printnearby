@@ -53,6 +53,11 @@ input,select{
 .checks{display:flex;gap:8px;flex-wrap:wrap}
 .chip{border:1px solid var(--line);padding:9px 12px;border-radius:999px;font-size:13px;cursor:pointer;background:white}
 .chip.on{background:var(--dark);color:white;border-color:var(--dark)}
+.color-options{display:flex;gap:8px;flex-wrap:wrap}
+.color-chip{display:inline-flex;align-items:center;gap:8px}
+.color-swatch{width:16px;height:16px;flex:none;border:1px solid rgba(0,0,0,.2);border-radius:50%}
+.color-swatch.transparent{background-color:#fff;background-image:linear-gradient(45deg,#c9c9c4 25%,transparent 25%),linear-gradient(-45deg,#c9c9c4 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#c9c9c4 75%),linear-gradient(-45deg,transparent 75%,#c9c9c4 75%);background-size:8px 8px;background-position:0 0,0 4px,4px -4px,-4px 0}
+.color-swatch.other{background:conic-gradient(#e54747 0 25%,#f4c542 0 50%,#4e9f72 0 75%,#4f79c8 0)}
 .jobhead{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
 .badge{font-size:11px;font-weight:700;padding:7px 9px;border-radius:999px;background:#eaf5ee;color:var(--good);white-space:nowrap}
 .object{
@@ -191,6 +196,18 @@ button{
     <label data-i18n="printerLabel">Printer</label><select id="printerSelect"><option value="bambu-p1s">Bambu Lab P1S</option><option value="anycubic-kobra-3" data-i18n="anycubicPrinter">Anycubic Kobra 3 — 消费级 FDM</option><option value="ender-3-v3-se">Creality Ender-3 V3 SE</option><option value="prusa-mk4s">Prusa MK4S</option><option value="other" data-i18n="otherPrinter">Other printer</option></select>
     <label data-i18n="materialsLabel">available materials</label>
     <div class="checks"><div class="chip on">PLA</div><div class="chip on">PETG</div><div class="chip">TPU</div><div class="chip">ABS</div></div>
+    <label data-i18n="colorsLabel">可打印颜色</label>
+    <div class="color-options" id="colorOptions">
+      <button class="chip color-chip" type="button" data-color="white" aria-pressed="false"><span class="color-swatch" style="background:#fff"></span><span data-i18n="colorWhite">白色</span></button>
+      <button class="chip color-chip" type="button" data-color="red" aria-pressed="false"><span class="color-swatch" style="background:#e54747"></span><span data-i18n="colorRed">红色</span></button>
+      <button class="chip color-chip" type="button" data-color="orange" aria-pressed="false"><span class="color-swatch" style="background:#f28c28"></span><span data-i18n="colorOrange">橙色</span></button>
+      <button class="chip color-chip" type="button" data-color="blue" aria-pressed="false"><span class="color-swatch" style="background:#3976d2"></span><span data-i18n="colorBlue">蓝色</span></button>
+      <button class="chip color-chip" type="button" data-color="yellow" aria-pressed="false"><span class="color-swatch" style="background:#f2c93d"></span><span data-i18n="colorYellow">黄色</span></button>
+      <button class="chip color-chip" type="button" data-color="gray" aria-pressed="false"><span class="color-swatch" style="background:#858585"></span><span data-i18n="colorGray">灰色</span></button>
+      <button class="chip color-chip" type="button" data-color="black" aria-pressed="false"><span class="color-swatch" style="background:#202020"></span><span data-i18n="colorBlack">黑色</span></button>
+      <button class="chip color-chip" type="button" data-color="transparent" aria-pressed="false"><span class="color-swatch transparent"></span><span data-i18n="colorTransparent">透明</span></button>
+      <button class="chip color-chip" type="button" data-color="other" aria-pressed="false"><span class="color-swatch other"></span><span data-i18n="colorOther">其他</span></button>
+    </div>
     <label data-i18n="sizeLabel">max printing size</label><input value="256 × 256 × 256 mm">
     <label data-i18n="timeLabel">max printing time per job</label><select><option>8 hours</option><option>4 hours</option><option>12 hours</option><option data-i18n="noLimit">No limit</option></select>
     <label data-i18n="daysLabel">available days</label>
@@ -397,6 +414,7 @@ const translations={
 const qualificationTranslations={
   zh:{
     registerMaker:"注册 Maker 资格",verifyPrinterTest:"验证打印机 · 完成测试打印",verifyAndMatch:"验证能力 · 匹配订单",verifiedMaker:"已验证 Maker",
+    colorsLabel:"可打印颜色",colorWhite:"白色",colorRed:"红色",colorOrange:"橙色",colorBlue:"蓝色",colorYellow:"黄色",colorGray:"灰色",colorBlack:"黑色",colorTransparent:"透明",colorOther:"其他",
     qualificationStatus:"资格状态",notVerified:"未验证",completeVerification:"完成资格验证",startQualification:"开始资格验证 →",qualificationTitle:"验证 Maker 资格",qualificationLead:"完成简单的打印机验证和标准测试打印，通过后即可开始接收匹配订单。",
     verifyYourPrinter:"验证你的打印机",printerVerifyIntro:"开始接收订单前，我们需要确认你能使用注册的打印机。",registeredPrinter:"注册的打印机",buildVolume:"成型尺寸",supportedMaterials:"支持材料",verificationCodeLabel:"你的验证代码",photoInstructions:"请拍一张照片，清楚展示以下内容：",photoPrinter:"你注册的打印机",photoFullBody:"完整的打印机机身",photoCode:"写有验证代码 PN-4827 的纸条",uploadVerificationPhoto:"上传验证照片",clickToSimulate:"点击模拟上传",photoUploaded:"✓ 照片已上传",printerVerified:"✓ 打印机已验证",verifyPrinter:"验证打印机",verifyingPrinter:"正在验证…",continue:"继续 →",
     qualificationPrintTitle:"完成资格测试打印",qualificationPrintLead:"打印这个小型标准测试件，证明打印机已校准并能满足平台的基础质量要求。",qualificationTest:"资格测试 · PLA / 标准质量",estimatedMaterial:"预计材料",standardQuality:"标准质量",testEvaluates:"测试件用于展示以下能力：",firstLayer:"首层质量",surfaceQuality:"表面质量",bridging:"桥接",overhang:"悬垂",stringing:"拉丝",dimensionalAccuracy:"尺寸精度",modelDownloaded:"✓ 资格测试模型已准备好",downloadQualificationModel:"下载资格测试模型",finishedThePrint:"我已完成打印",
@@ -407,6 +425,7 @@ const qualificationTranslations={
   },
   en:{
     registerMaker:"Register as a Maker",verifyPrinterTest:"Verify your printer · Complete a test print",verifyAndMatch:"Verify capability · Match with jobs",verifiedMaker:"Verified Maker",
+    colorsLabel:"Available colors",colorWhite:"White",colorRed:"Red",colorOrange:"Orange",colorBlue:"Blue",colorYellow:"Yellow",colorGray:"Gray",colorBlack:"Black",colorTransparent:"Transparent",colorOther:"Other",
     qualificationStatus:"Qualification status",notVerified:"Not verified",completeVerification:"Complete verification",startQualification:"Start qualification →",qualificationTitle:"Verify your Maker eligibility",qualificationLead:"Verify your printer and complete a standard test print. Once you pass, you can receive compatible jobs.",
     verifyYourPrinter:"Verify your printer",printerVerifyIntro:"Before receiving jobs, we need to verify that you have access to the printer you registered.",registeredPrinter:"Registered printer",buildVolume:"Build volume",supportedMaterials:"Supported materials",verificationCodeLabel:"Your verification code",photoInstructions:"Take one photo that clearly shows:",photoPrinter:"Your registered printer",photoFullBody:"The complete printer body",photoCode:"A piece of paper displaying verification code PN-4827",uploadVerificationPhoto:"Upload verification photo",clickToSimulate:"Click to simulate an upload",photoUploaded:"✓ Photo uploaded",printerVerified:"✓ Printer verified",verifyPrinter:"Verify printer",verifyingPrinter:"Verifying…",continue:"Continue →",
     qualificationPrintTitle:"Complete a qualification print",qualificationPrintLead:"Print this small standardized test object to show that your printer is calibrated and ready for customer jobs.",qualificationTest:"Qualification Test · PLA / Standard Quality",estimatedMaterial:"Estimated material",standardQuality:"Standard Quality",testEvaluates:"The test print demonstrates:",firstLayer:"First-layer quality",surfaceQuality:"Surface quality",bridging:"Bridging",overhang:"Overhang",stringing:"Stringing",dimensionalAccuracy:"Dimensional accuracy",modelDownloaded:"✓ Qualification model ready",downloadQualificationModel:"Download qualification model",finishedThePrint:"I've finished the print",
@@ -693,7 +712,21 @@ document.getElementById("submitQualificationEvidence").addEventListener("click",
   setQualificationStage(3);
 });
 document.querySelectorAll("[data-material]").forEach(button=>button.addEventListener("click",()=>showToast("moreMaterialRequired")));
-document.querySelectorAll(".chip").forEach(chip=>chip.onclick=()=>chip.classList.toggle("on"));
+document.querySelectorAll(".chip:not(.color-chip)").forEach(chip=>chip.onclick=()=>chip.classList.toggle("on"));
+const colorButtons=[...document.querySelectorAll(".color-chip")];
+colorButtons.forEach(button=>button.addEventListener("click",()=>{
+  const selected=button.classList.toggle("on");
+  button.setAttribute("aria-pressed",String(selected));
+  const selectedColors=colorButtons.filter(color=>color.classList.contains("on")).map(color=>color.dataset.color);
+  session.set("print-colors",JSON.stringify(selectedColors));
+}));
+let savedColors=[];
+try{savedColors=JSON.parse(session.get("print-colors","[]"))}catch{}
+colorButtons.forEach(button=>{
+  const selected=savedColors.includes(button.dataset.color);
+  button.classList.toggle("on",selected);
+  button.setAttribute("aria-pressed",String(selected));
+});
 const printerSelect=document.getElementById("printerSelect");
 const savedPrinter=session.get("printer","bambu-p1s");
 if([...printerSelect.options].some(option=>option.value===savedPrinter))printerSelect.value=savedPrinter;
