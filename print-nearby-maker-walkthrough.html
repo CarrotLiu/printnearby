@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Print Nearby — Maker Concept Walkthrough</title>
+<style>
+:root{
+  --bg:#f5f5f2; --card:#fff; --text:#171717; --muted:#6d6d68;
+  --line:#deded8; --soft:#eeeeea; --dark:#171717; --good:#26734d;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+}
+.shell{min-height:100vh;display:grid;grid-template-columns:260px 1fr}
+aside{
+  padding:28px 22px;border-right:1px solid var(--line);background:#fafaf7;
+  position:sticky;top:0;height:100vh;
+}
+.brand{font-size:20px;font-weight:800;letter-spacing:-.4px;margin-bottom:7px}
+.subtitle{font-size:12px;line-height:1.5;color:var(--muted);margin-bottom:28px}
+.steps{display:flex;flex-direction:column;gap:8px}
+.step{
+  display:flex;gap:10px;align-items:center;padding:10px;border-radius:10px;
+  font-size:13px;color:var(--muted);cursor:pointer
+}
+.step.active{background:var(--dark);color:white}
+.num{
+  width:22px;height:22px;border:1px solid currentColor;border-radius:50%;
+  display:grid;place-items:center;font-size:11px;flex:none
+}
+.progress{height:3px;background:var(--soft);margin-top:26px;border-radius:5px;overflow:hidden}
+.progress>div{height:100%;background:var(--dark);width:16.66%;transition:.25s}
+main{padding:42px 5vw 90px;display:flex;justify-content:center}
+.page{width:min(780px,100%);display:none}
+.page.active{display:block}
+.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:700;color:var(--muted)}
+h1{font-size:clamp(32px,5vw,58px);line-height:1.02;letter-spacing:-2.2px;margin:10px 0 16px;max-width:720px}
+.lead{font-size:17px;line-height:1.65;color:var(--muted);max-width:650px;margin-bottom:32px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;margin:18px 0}
+.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:center}
+.flowbox{padding:18px;border:1px solid var(--line);border-radius:14px;background:white;text-align:center;font-size:14px;min-height:88px;display:grid;place-items:center}
+.arrow{color:var(--muted)}
+label{display:block;font-size:12px;font-weight:700;margin:18px 0 8px}
+input,select{
+  width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:10px;background:white;
+  font:inherit;color:var(--text)
+}
+.checks{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);padding:9px 12px;border-radius:999px;font-size:13px;cursor:pointer;background:white}
+.chip.on{background:var(--dark);color:white;border-color:var(--dark)}
+.jobhead{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
+.badge{font-size:11px;font-weight:700;padding:7px 9px;border-radius:999px;background:#eaf5ee;color:var(--good);white-space:nowrap}
+.object{
+  width:110px;height:110px;border-radius:18px;background:linear-gradient(145deg,#efefeb,#dcdcd5);
+  display:grid;place-items:center;margin:16px 0;font-size:44px
+}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:18px 0}
+.metric{background:white;padding:15px}
+.metric span{display:block;font-size:11px;color:var(--muted);margin-bottom:5px}
+.metric strong{font-size:15px}
+.verify{display:flex;flex-direction:column;gap:8px;margin:16px 0}
+.verify div{font-size:13px;color:var(--good)}
+.actions{display:flex;gap:10px;margin-top:22px}
+button{
+  border:0;border-radius:11px;padding:13px 17px;font:inherit;font-weight:700;cursor:pointer
+}
+.primary{background:var(--dark);color:white;flex:1}
+.secondary{background:var(--soft);color:var(--text);flex:1}
+.question{
+  margin-top:28px;padding:18px;border-left:3px solid var(--dark);background:#efefeb;
+}
+.question b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px}
+.question p{margin:0;font-size:15px;line-height:1.55}
+.settings{display:grid;gap:10px;margin-top:16px}
+.setting{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line);font-size:14px}
+.upload{
+  border:1.5px dashed #aaa;border-radius:14px;padding:36px;text-align:center;color:var(--muted);margin:16px 0
+}
+.failure{display:grid;gap:8px;margin:16px 0}
+.radio{padding:12px;border:1px solid var(--line);border-radius:10px;font-size:13px;background:white}
+.protection{background:#f0f5f1;border-radius:14px;padding:18px;margin-top:18px}
+.protection small{color:var(--muted)}
+.nav{display:flex;justify-content:space-between;margin-top:34px}
+.nav button{min-width:110px}
+.note{font-size:12px;color:var(--muted);margin-top:16px;line-height:1.5}
+@media(max-width:760px){
+  .shell{display:block}
+  aside{height:auto;position:static;border-right:0;border-bottom:1px solid var(--line);padding:18px}
+  .subtitle,.steps{display:none}
+  .progress{margin-top:12px}
+  main{padding:30px 18px 70px}
+  h1{letter-spacing:-1.4px}
+  .flow{grid-template-columns:1fr}
+  .arrow{transform:rotate(90deg);text-align:center}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside>
+  <div class="brand">Print Nearby</div>
+  <div class="subtitle">Maker-side concept walkthrough<br>用于概念访谈，不是最终界面。</div>
+  <div class="steps" id="steps"></div>
+  <div class="progress"><div id="bar"></div></div>
+</aside>
+
+<main>
+<section class="page active">
+  <div class="eyebrow">01 · Concept</div>
+  <h1>让你的闲置的打印机，变成一个简单的本地服务</h1>
+  <p class="lead">你的顾客会上传模型。平台负责检查、报价、匹配和付款。你只需要接收适合自己设备和时间的订单。</p>
+  <div class="flow">
+    <div class="flowbox"><b>顾客</b><br>上传 3D 模型</div><div class="arrow">→</div>
+    <div class="flowbox"><b>平台</b><br>检查 · 报价 · 匹配</div><div class="arrow">→</div>
+    <div class="flowbox"><b>你</b><br>接受 · 打印 · 完成</div>
+  </div>
+  <div class="question"><b>先确认</b><p>看到这里，你觉得这个服务是怎么运作的？哪里还不清楚？</p></div>
+  <div class="nav"><span></span><button class="primary" onclick="go(1)">开始体验 →</button></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">02 · Printer profile</div>
+  <h1>告诉平台你的打印能力。</h1>
+  <p class="lead">这些信息用于自动过滤不适合你的订单。你仍然可以决定什么时候接单。</p>
+  <div class="card">
+    <label>Printer</label><select><option>Bambu Lab P1S</option><option>Other printer</option></select>
+    <label>可打印材料</label>
+    <div class="checks"><div class="chip on">PLA</div><div class="chip on">PETG</div><div class="chip">TPU</div><div class="chip">ABS</div></div>
+    <label>最大打印尺寸</label><input value="256 × 256 × 256 mm">
+    <label>单个订单最长打印时间</label><select><option>8 hours</option><option>4 hours</option><option>12 hours</option><option>No limit</option></select>
+    <label>本周可接单</label>
+    <div class="checks"><div class="chip">Mon</div><div class="chip on">Tue</div><div class="chip on">Wed</div><div class="chip">Thu</div><div class="chip on">Fri</div></div>
+  </div>
+  <div class="question"><b>问她</b><p>这些信息够不够让平台判断一个订单适不适合你的打印机？还需要知道什么？</p></div>
+  <div class="nav"><button class="secondary" onclick="go(0)">← 返回</button><button class="primary" onclick="go(2)">收到订单 →</button></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">03 · Smart matching</div>
+  <h1>平台只把匹配的订单发给你。</h1>
+  <div class="card">
+    <div class="jobhead"><div><small>NEW PRINT REQUEST</small><h2 style="margin:5px 0">Phone stand</h2></div><div class="badge">Model checked</div></div>
+    <div class="object">▱</div>
+    <div class="grid">
+      <div class="metric"><span>Material</span><strong>PLA</strong></div>
+      <div class="metric"><span>Print time</span><strong>3h 20m</strong></div>
+      <div class="metric"><span>Material use</span><strong>82 g</strong></div>
+      <div class="metric"><span>Quality</span><strong>Standard</strong></div>
+      <div class="metric"><span>Customer</span><strong>1.8 km away</strong></div>
+      <div class="metric"><span>You earn</span><strong>€14.20</strong></div>
+    </div>
+    <div class="verify"><div>✓ Fits your printer</div><div>✓ No major geometry issues</div><div>✓ Customer has paid</div></div>
+    <div class="actions"><button class="secondary">Decline</button><button class="primary" onclick="go(3)">Accept</button></div>
+  </div>
+  <div class="question"><b>问她</b><p>如果你真的收到这个订单，这些信息够你决定接不接吗？缺什么？你希望平台定价，还是自己报价？</p></div>
+  <div class="nav"><button class="secondary" onclick="go(1)">← 返回</button><button class="primary" onclick="go(3)">假设接受 →</button></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">04 · Ready to print</div>
+  <h1>减少准备工作，但保留必要控制。</h1>
+  <p class="lead">平台根据模型和设备提供建议参数。这里故意保留两种方式，用来讨论你愿意把多少控制交给平台。</p>
+  <div class="card">
+    <h2 style="margin-top:0">Recommended settings</h2>
+    <div class="settings">
+      <div class="setting"><span>Layer height</span><b>0.20 mm</b></div>
+      <div class="setting"><span>Infill</span><b>20%</b></div>
+      <div class="setting"><span>Supports</span><b>No</b></div>
+      <div class="setting"><span>Estimated time</span><b>3h 20m</b></div>
+    </div>
+    <div class="actions"><button class="secondary">Download original STL</button><button class="primary">Use prepared file</button></div>
+  </div>
+  <div class="question"><b>关键问题</b><p>你会信任平台准备好的打印参数/文件吗？哪些设置你一定想自己检查或修改？</p></div>
+  <div class="nav"><button class="secondary" onclick="go(2)">← 返回</button><button class="primary" onclick="go(4)">打印完成 →</button></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">05 · Quality check</div>
+  <h1>完成前做一次轻量确认。</h1>
+  <div class="card">
+    <h2 style="margin-top:0">Print complete?</h2>
+    <div class="upload">＋<br><br>上传一张成品照片</div>
+    <label>打印结果</label>
+    <div class="checks"><div class="chip on">No issues</div><div class="chip">Minor defects</div><div class="chip">Print failed</div></div>
+    <button class="primary" style="width:100%;margin-top:22px">Submit & mark complete</button>
+  </div>
+  <div class="question"><b>问她</b><p>拍一张照片作为完成证明合理吗？你愿意做什么程度的质量检查？什么检查会太麻烦？</p></div>
+  <div class="nav"><button class="secondary" onclick="go(3)">← 返回</button><button class="primary" onclick="go(5)">如果失败了 →</button></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">06 · Failure protection</div>
+  <h1>如果打印失败，谁承担风险？</h1>
+  <div class="card">
+    <h2 style="margin-top:0">Print failed</h2>
+    <div class="failure">
+      <div class="radio">○ Adhesion / support failure</div>
+      <div class="radio">○ Filament issue</div>
+      <div class="radio">○ Printer issue</div>
+      <div class="radio">○ Model issue</div>
+      <div class="radio">○ Other</div>
+    </div>
+    <div class="grid">
+      <div class="metric"><span>Material used</span><strong>63 g</strong></div>
+      <div class="metric"><span>Time used</span><strong>2h 14m</strong></div>
+    </div>
+    <div class="protection"><b>Platform protection</b><p>示例：补偿部分材料成本；如果你无法重印，订单可以自动重新匹配给其他 Maker。</p><small>这不是最终政策——正要通过访谈验证。</small></div>
+    <div class="actions"><button class="secondary">Return to network</button><button class="primary">Reprint</button></div>
+  </div>
+  <div class="question"><b>最重要的问题</b><p>这种情况怎么处理对你才公平？哪些失败应该由 Maker、顾客或平台承担？什么情况会让你以后不想再接单？</p></div>
+  <div class="nav"><button class="secondary" onclick="go(4)">← 返回</button><button class="primary" onclick="go(0)">重新开始 ↻</button></div>
+  <p class="note">访谈结束后建议记录：她要求新增的信息、她不愿交给平台的控制、最大的风险，以及最能提高接单意愿的功能。</p>
+</section>
+</main>
+</div>
+
+<script>
+const names=["概念","打印机设置","智能匹配","打印准备","质量确认","失败处理"];
+const pages=[...document.querySelectorAll(".page")];
+const steps=document.getElementById("steps");
+names.forEach((n,i)=>{
+  const el=document.createElement("div");el.className="step"+(i===0?" active":"");
+  el.innerHTML=`<span class="num">${i+1}</span><span>${n}</span>`;
+  el.onclick=()=>go(i);steps.appendChild(el);
+});
+function go(i){
+  pages.forEach((p,j)=>p.classList.toggle("active",j===i));
+  [...steps.children].forEach((s,j)=>s.classList.toggle("active",j===i));
+  document.getElementById("bar").style.width=((i+1)/pages.length*100)+"%";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>c.classList.toggle("on"));
+</script>
+</body>
+</html>
